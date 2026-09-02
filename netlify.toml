@@ -1,0 +1,3 @@
+[build]
+  command = "pip3 install jinja2 && python3 build.py"
+  publish = "dist"

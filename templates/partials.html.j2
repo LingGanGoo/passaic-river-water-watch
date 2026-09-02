@@ -1,0 +1,25 @@
+{% macro station_panel() %}
+<div class="panel pin">
+  <h4>Station</h4>
+  <dl class="deflist">
+    <dt>Id</dt><dd>{{ station.id }}</dd>
+    <dt>Place</dt><dd class="tx">{{ station.name }}</dd>
+    <dt>Coord</dt><dd>{{ station.latitude }} N, {{ -station.longitude }} W</dd>
+    <dt>Water</dt><dd class="tx">{{ site.rail_water }}</dd>
+    <dt>Method</dt><dd class="tx">Coliscan Easygel, 5 mL, duplicate plates, 24 h at 35 C</dd>
+    <dt>Window</dt><dd>{{ station.sampling_window }}</dd>
+    <dt>Record</dt><dd class="tx">{{ season_range }}</dd>
+    <dt>Samples</dt><dd>{{ stats.n }}</dd>
+    <dt>Updated</dt><dd>{{ updated_long }}</dd>
+  </dl>
+  <p class="note" style="margin-top:10px">{{ site.station_note }}</p>
+</div>
+{% endmacro %}
+
+{% macro bands_panel() %}
+<div class="panel">
+  <h4>The three bands</h4>
+  {{ charts.bands_legend }}
+  <p class="note" style="margin-top:8px">{{ site.bands_note }}</p>
+</div>
+{% endmacro %}

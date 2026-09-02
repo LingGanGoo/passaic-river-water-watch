@@ -1,0 +1,40 @@
+{% extends 'base.html.j2' %}
+{% import 'partials.html.j2' as partials with context %}
+{% set title = "Advisory archive | " ~ site.name %}
+{% set description = "Every advisory for the Nereid dock, exactly as it was sent, with the count and the antecedent rainfall behind each one." %}
+
+{% block main %}<div class="grid">
+<div class="col-main">
+<span class="kicker">{% if advisories %}{{ word(advisories | length, true) }} note{{ 's' if advisories | length != 1 }}, as sent{% else %}The archive{% endif %}</span>
+<h1>Advisory archive</h1>
+{% if advisories %}
+<p class="lede">Every advisory of the {{ weeks[0].date.year }} season, in the words it went out in. Nothing here has been tidied up after the fact.</p>
+<div class="scroll"><table class="tbl">
+<caption>The advisories</caption>
+<thead><tr><th scope="col">Sample</th><th class="n" scope="col">{{ criteria.unit }}</th><th class="n" scope="col">Call</th><th class="n" scope="col">48 h rain, in</th><th scope="col">Sent</th></tr></thead>
+<tbody>{% for a in advisories %}<tr><td><a class="tx" href="#{{ a.id }}">{{ a.week.date_long }}</a></td><td class="n">{{ commas(a.week.ecoli) }}</td><td class="n {{ a.week.band[0] }}">{{ a.week.band_word }}</td><td class="n">{% if a.week.rain is not none %}{{ '%.2f' % a.week.rain }}{% else %}&mdash;{% endif %}</td><td>{{ a.sent_label }}</td></tr>{% endfor %}</tbody></table></div>
+{% for a in advisories %}<article class="adv {{ a.week.band }}" id="{{ a.id }}">
+  <p class="meta"><span>{{ a.week.activity_id }}</span><span>{{ commas(a.week.ecoli) }} {{ criteria.unit }}</span><span>{{ a.week.band_word }}</span>{% if a.week.rain is not none %}<span>48 h rain {{ '%.2f' % a.week.rain }} in</span>{% endif %}</p>
+  <h3>{{ a.heading }}</h3>
+  <p class="meta" style="margin-top:6px">{% for m in a.meta %}<span>{{ m }}</span>{% endfor %}</p>
+  <pre class="sent">{{ a.sent_text }}</pre>
+</article>
+{% endfor %}
+{% else %}
+<p class="lede">Every advisory of the season will be archived here, in the words it went out in. Nothing gets tidied up after the fact.</p>
+<p>No advisories have been sent yet this season. The most recent sample and its band call are on the <a class='tx' href='/'>front page</a>, and the full record behind it is on the <a class='tx' href='/readings/'>readings page</a>. When the first note goes to the list, it lands here exactly as sent.</p>
+{% endif %}
+</div>
+<div class="col-rail">
+{{ partials.station_panel() }}
+<div class="panel">
+  <h4>Distribution</h4>
+  <dl class="deflist">
+    <dt>Dock</dt><dd class="tx">printed and taped inside the boathouse door</dd>
+    <dt>Sent</dt><dd>{{ advisories | length }} of {{ stats.n }}</dd>
+    <dt>Colors</dt><dd class="tx">{{ stats.colors_line }}</dd>
+  </dl>
+</div>
+{{ partials.bands_panel() }}
+</div>
+</div>{% endblock %}

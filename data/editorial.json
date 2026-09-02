@@ -1,0 +1,13 @@
+{
+  "weeks": [
+    {
+      "id": "w01",
+      "say": "Method note: the plated volume was five pipette draws with water reaching the bulb. Calibrated afterwards against a test tube, three such draws consistently measure 5 mL, so each plate received about 8.3 mL and the value here uses the measured volume (multiplier 12, not the nominal 20). The red call is unchanged. Draws are stopped at the 1 mL stem mark from week 3 on."
+    },
+    {
+      "id": "w02",
+      "say": "Method note: the plated volume was five pipette draws with water reaching the bulb. Calibrated afterwards against a test tube, three such draws consistently measure 5 mL, so each plate received about 8.3 mL and the value here uses the measured volume (multiplier 12, not the nominal 20). The red call is unchanged. Draws are stopped at the 1 mL stem mark from week 3 on."
+    }
+  ],
+  "advisories": []
+}

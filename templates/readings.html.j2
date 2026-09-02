@@ -1,0 +1,69 @@
+{% extends 'base.html.j2' %}
+{% import 'partials.html.j2' as partials with context %}
+{% set title = "Readings | " ~ site.name %}
+{% set description = "Every weekly record from station NBC-01 with the field parameters, the plate counts and the season statistics." %}
+
+{% block main %}<div class="grid">
+<div class="col-main">
+<span class="kicker">Station {{ station.id }}, {{ weeks[0].date.year }} season</span>
+<h1>Readings</h1>
+<p class="lede">{{ word(stats.n, true) }} sample{{ 's' if stats.n != 1 }} so far, with every field on the sheet{% if stats.split_count %}, both plate counts, and the {{ word(stats.split_count) }} laboratory splits where they exist{% else %} and both plate counts{% endif %}.</p>
+<figure class="fig"><div class="figscroll">{{ charts.season_chart }}</div><figcaption>E. coli by week on a log scale, with the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion dashed and the {{ criteria.single_sample }} {{ criteria.unit }} single sample value solid. The bars below the axis are the rainfall in the 48 hours before each sample, where a rain reading exists.</figcaption></figure>
+
+<h2>The season, counted</h2>
+<p>Every number below comes from the record{{ 's' if stats.n != 1 }} on this page. Where a statistic needs a rule, the rule is printed with it.</p>
+<div class="scroll"><table class="tbl">
+<caption>Season statistics, {{ season_range }}, n = {{ stats.n }}</caption>
+<thead><tr><th scope="col">Statistic</th><th class="n" scope="col">Value</th><th scope="col">How it is counted</th></tr></thead>
+<tbody>
+<tr><td>Samples</td><td class="n">{{ stats.n }}</td><td>one grab sample per visit</td></tr>
+<tr><td>Exceedances of {{ criteria.single_sample }}</td><td class="n">{{ stats.over_count }}</td><td>{% if stats.over_count %}week{{ 's' if stats.over_count != 1 }} {{ stats.over_weeks }}{% else %}none yet{% endif %}</td></tr>
+<tr><td>Season geometric mean</td><td class="n">{{ stats.season_gm }}</td><td>antilog of the mean of the log10 of all values</td></tr>
+{% if stats.dry_gm is not none %}<tr><td>Dry weather geometric mean</td><td class="n">{{ stats.dry_gm }}</td><td>the {{ word(stats.dry_count) }} week{{ 's' if stats.dry_count != 1 }} with under 0.25 in of antecedent rain</td></tr>
+{% endif %}{% if stats.wet_gm is not none %}<tr><td>Wet weather geometric mean</td><td class="n">{{ stats.wet_gm }}</td><td>the {{ word(stats.wet_count) }} week{{ 's' if stats.wet_count != 1 }} with 0.5 in or more</td></tr>
+{% endif %}{% if stats.wet_dry_ratio %}<tr><td>Wet to dry ratio</td><td class="n">{{ '%.1f' % stats.wet_dry_ratio }} times</td><td>wet geometric mean divided by dry</td></tr>
+{% endif %}<tr><td>Median</td><td class="n">{{ stats.median }}</td><td>{{ stats.median_rule }}</td></tr>
+<tr><td>Range</td><td class="n">{{ commas(stats.lo.ecoli) }} to {{ commas(stats.hi.ecoli) }}</td><td>{% if stats.n > 1 %}{{ stats.lo.date_noyear }}, and {{ stats.hi.date_noyear }}{% else %}one sample so far{% endif %}</td></tr>
+<tr><td>Advisory colors</td><td class="n">{{ stats.colors_line }}</td><td>one call per sample against the bands</td></tr>
+</tbody></table></div>
+{% if stats.has_rain_story %}
+<p>Rain over half an inch preceded {{ word(stats.wet_over_count) }} of the {{ word(stats.over_count) }} exceedance{{ 's' if stats.over_count != 1 }}. The <a class='tx' href='/methods/#model'>rain and risk section</a> reports what that pattern gets wrong as well as what it gets right.</p>
+{% endif %}
+{% if stats.n > 1 %}<p class="note">Ranges on the record plates are over the weeks of the season so far.</p>
+{% endif %}{% for w in weeks %}<article class="record" id="{{ w.id }}">
+  <div class="record-head">
+    <h3>{{ w.date_long }}</h3>
+    <span class="id">{{ w.activity_id }}</span>
+    <span class="call {{ w.band[0] }}">{{ w.band_word }} &middot; {{ commas(w.ecoli) }} {{ criteria.unit }}</span>
+  </div>
+  <div class="record-body">
+    <div>
+      <div class="scroll"><table class="tbl">
+        <tr><th scope="col">Collected</th><td class="n">{{ w.time }}</td><th scope="col">Tide</th><td class="n">{{ w.tide }}</td></tr>
+        <tr><th scope="row">48 h rain</th><td class="n">{% if w.rain is not none %}{{ '%.2f' % w.rain }} in{% else %}not recorded{% endif %}</td><th scope="row">Water temp</th><td class="n">{% if w.temp is not none %}{{ '%.1f' % w.temp }} C{% else %}&mdash;{% endif %}</td></tr>
+        <tr><th scope="row">pH</th><td class="n">{{ w.ph or '&mdash;' }}</td><th scope="row">Turbidity</th><td class="n">{% if w.turbidity is not none %}{{ '%g' % w.turbidity }} {{ w.turbidity_unit }}{% else %}&mdash;{% endif %}</td></tr>
+        <tr><th scope="row">Nitrate as N</th><td class="n">{{ w.nitrate_raw or '&mdash;' }}{% if w.nitrate is not none %} mg/L{% endif %}</td><th scope="row">Orthophosphate</th><td class="n">{{ w.orthop_str or '&mdash;' }}</td></tr>
+        {% if w.coliform %}<tr><th scope="row">Total coliforms</th><td class="n">{{ w.coliform }}</td><th scope="row"></th><td class="n"></td></tr>
+        {% endif %}{% if w.plate_a is not none %}<tr><th scope="row">Plate A</th><td class="n">{{ w.plate_a }} colonies</td><th scope="row">Plate B</th><td class="n">{{ w.plate_b }} colonies</td></tr>
+        {% endif %}<tr><th scope="row">Reported</th><td class="n">{{ commas(w.ecoli) }} {{ criteria.unit }}</td><th scope="row">Band</th><td class="n">{{ w.band_word }}</td></tr>
+      </table></div>
+      {% if w.say %}<p class="say">{{ w.say }}</p>
+      {% endif %}{% if w.split %}<p class="say">Split sample. The laboratory reported {{ commas(w.split.lab) }} MPN/100 mL against {{ commas(w.ecoli) }} here, a relative percent difference of {{ '%.1f' % w.split.rpd }}% and {{ '%.3f' % w.split.logdiff }} log10 apart.</p>{% endif %}
+    </div>
+    <div class="plate">{{ charts.record_plates[w.id] }}</div>
+  </div>
+</article>
+{% endfor %}</div>
+<div class="col-rail">
+{{ partials.station_panel() }}
+<div class="panel">
+  <h4>How to read a record</h4>
+  <p class="note">Plate A and Plate B are the two duplicate dishes poured from one bottle. The mean colony count divided by the plated volume, times 100, gives CFU per 100 mL &mdash; at the standard 5 mL that is a multiplier of 20. Where a week's real plated volume differed, the record says so and the arithmetic follows the measured volume.</p>
+</div>
+<div class="panel">
+  <h4>Take the data</h4>
+  <p class="note">Every record, plus the field parameters, is published as CSV and JSON with a data dictionary. <a class='tx' href='/data/'>The data page</a>.</p>
+</div>
+{{ partials.bands_panel() }}
+</div>
+</div>{% endblock %}

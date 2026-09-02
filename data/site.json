@@ -1,0 +1,57 @@
+{
+  "name": "Passaic River Water Watch",
+  "season_status": "Season in progress",
+  "email": "passaicriverwaterwatch@gmail.com",
+  "rail_water": "Lower Passaic, tidal, below the Dundee Dam",
+  "station_note": "The coordinate is published to two decimal places on purpose. One person stands in the same spot at the same hour every week.",
+  "bands_note": "Each band carries a word and a texture as well as a color, so the call survives a photocopier and a color blind reader.",
+  "band_say": {
+    "green": "Normal precautions. Wash your hands after handling lines and blades.",
+    "yellow": "Elevated. Keep hands away from your face on the water, and wash before you eat.",
+    "red": "Above the single sample line. No swimming and no intentional contact. Rinse and wash after the row."
+  },
+  "model_line_in": 0.4,
+  "nav": [
+    [
+      "index",
+      "/",
+      "This week"
+    ],
+    [
+      "readings",
+      "/readings/",
+      "Readings"
+    ],
+    [
+      "advisories",
+      "/advisories/",
+      "Advisories"
+    ],
+    [
+      "methods",
+      "/methods/",
+      "Methods"
+    ],
+    [
+      "model",
+      "/model/",
+      "Model"
+    ],
+    [
+      "alerts",
+      "/alerts/",
+      "Rain and sewage"
+    ],
+    [
+      "data",
+      "/data/",
+      "Data"
+    ],
+    [
+      "about",
+      "/about/",
+      "About"
+    ]
+  ],
+  "kicker": "Nereid dock, 2026 season"
+}

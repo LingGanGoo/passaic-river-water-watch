@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="icon" type="image/svg+xml" href="/brand/logo-mono.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/waterwatch.css">
+</head>
+<body>
+<header class="util">
+  <div class="wrap">
+    <a class='mark' href='/'><img src="/brand/logo.svg" alt="{{ site.name }}" width="248" height="39"></a>
+    <div class="station-block">
+      <span>LAST READING <b>{{ commas(latest.ecoli) }} {{ criteria.unit }}</b> &middot; {{ latest.date_long }}</span>
+      <span>UPDATED {{ updated_long }}</span>
+    </div>
+  </div>
+</header>
+<nav class="mainnav" aria-label="Site">
+  <div class="wrap">
+    <ul>{% for id, url, label in site.nav %}<li><a {% if id == nav_page %}aria-current='page' {% endif %}href='{{ url }}'>{{ label }}</a></li>{% endfor %}</ul>
+    <p class="stage">{{ site.season_status }}, {{ season_range }}</p>
+  </div>
+</nav>
+{% block band %}{% endblock %}
+<main class="wrap">{% block main %}{% endblock %}</main>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div class="fmark">
+        <img src="/brand/logo-mono.svg" alt="" width="44" height="44">
+        <p>Weekly bacteria monitoring at the Nereid Boat Club dock on the Lower Passaic. Run by Haolin Li, Rutherford High School.</p>
+      </div>
+      <div><h5>Pages</h5><ul>{% for id, url, label in site.nav %}<li><a href='{{ url }}'>{{ label }}</a></li>{% endfor %}</ul></div>
+      <div><h5>Method and data</h5>
+      <ul><li><a href='/methods/'>How the call is made</a></li>
+      <li><a href='/methods/#criteria'>The criteria</a></li>
+      <li><a href='/methods/#model'>Rain and risk</a></li>
+      <li><a href='/model/'>The loading model</a></li>
+      <li><a href='/data/'>The dataset</a></li></ul></div>
+      <div><h5>The Friday email</h5>
+      <p>It goes out on Friday evening and is posted at the dock. The club's own list, about ninety rowers and families, gets it, and a hundred and fifty people in all.</p>
+      <ul><li><a href='/advisories/'>The advisory archive</a></li>
+      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li></ul></div>
+    </div>
+    <div class="colophon">
+      <span>Station {{ station.id }} &middot; {{ station.latitude }} N, {{ -station.longitude }} W</span>
+      <span>Updated {{ updated_long }}</span>
+      <span>Readings released under {{ license }}</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

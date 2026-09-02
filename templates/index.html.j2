@@ -1,0 +1,74 @@
+{% extends 'base.html.j2' %}
+{% import 'partials.html.j2' as partials with context %}
+{% set title = "This week on the river | " ~ site.name %}
+{% set description = "Weekly E. coli readings and a rowing advisory for the Nereid Boat Club dock on the Lower Passaic River, Rutherford, New Jersey." %}
+
+{% block band %}
+<section class="band {{ latest.band }}" aria-label="Advisory for the most recent sample">
+  <div class="wrap">
+    <div>
+      <div class="band-id">{{ charts.band_chip("bandchip", latest.band, 30) }}<p class="band-word">{{ latest.band_word }}</p></div>
+      <p class="band-count">{{ commas(latest.ecoli) }} <small>{{ criteria.unit }}</small></p>
+      <p class="band-when">{{ weekday(latest.date) }} {{ latest.date_long }}, {{ latest.time }}</p>
+    </div>
+    <div>
+      <p class="band-say">{{ site.band_say[latest.band] }}</p>
+      <div class="band-facts">
+        {% if latest.rain is not none %}<p>48 h rain before the sample: <b>{{ '%.2f' % latest.rain }} in</b></p>
+        {% endif %}<p>The line this call is made against is {{ criteria.single_sample }} {{ criteria.unit }}, the Beach Action Value EPA recommends for E. coli in fresh water.</p>
+        <p><a class='tx' href='/methods/'>How this call is made</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block main %}<div class="grid">
+<div class="col-main">
+<span class="kicker">{{ site.kicker }}</span>
+<h1>This week on the river</h1>
+<p class="lede">{{ word(stats.n, true) }} sample{{ 's' if stats.n != 1 }} so far this season{% if stats.over_count %}, {{ word(stats.over_count) }} of {{ 'them' if stats.n != 1 else 'which came back' }} over the {{ criteria.single_sample }} line{% endif %}. Each square below links to the full record.</p>
+<p>I row here twice a day for most of the year, and nobody could tell me what was in the water where we row, so I started testing it myself.</p>
+<div class="strip">{% for w in weeks %}<a class='cell' href='/readings/#{{ w.id }}'><span class="sr"></span>{{ charts.strip_cells[loop.index0] }}<span class="d">{{ w.date_short }}</span><span class="v">{{ commas(w.ecoli) }}</span></a>{% endfor %}</div><div class="striplegend"><span>{{ charts.band_chip("lg1", "green", 13) }} green, under {{ criteria.geometric_mean }}</span><span>{{ charts.band_chip("lg2", "yellow", 13) }} yellow, {{ criteria.geometric_mean }} to {{ criteria.single_sample }}</span><span>{{ charts.band_chip("lg3", "red", 13) }} red, over {{ criteria.single_sample }}</span><span>CFU per 100 mL</span></div>
+<p class="note" style="margin-top:14px">Every square links to that week's full record.</p>
+
+{% if stats.has_rain_story %}
+<h2>What the season showed</h2>
+<p>The dry weeks had a geometric mean of {{ stats.dry_gm }} {{ criteria.unit }}. The wet ones, meaning more than half an inch of rain in the 48 hours before the sample, had a geometric mean of {{ stats.wet_gm }}{% if stats.wet_dry_ratio >= 1 %}, which is {{ '%.1f' % stats.wet_dry_ratio }} times higher{% else %} &mdash; lower than the dry weeks, which is worth sitting with rather than explaining away{% endif %}. {{ word(stats.wet_count, true) }} week{{ 's were' if stats.wet_count != 1 else ' was' }} wet and {{ word(stats.wet_over_count) }} of those went over {{ criteria.single_sample }}.</p>
+<p>The season geometric mean across all {{ word(stats.n) }} weeks is {{ stats.season_gm }} {{ criteria.unit }}, against the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion. The arithmetic behind it is on the <a class='tx' href='/readings/'>readings page</a>.</p>
+{% if charts.rain_scatter %}
+<figure class="fig"><div class="figscroll">{{ charts.rain_scatter }}</div><figcaption>Each sample plotted as antecedent rainfall against E. coli.{% if ann_week %} The circled point is {{ ann_week.date_noyear }}.{% endif %}</figcaption></figure>
+{% endif %}
+{% else %}
+<h2>The season so far</h2>
+<p>The season is just getting started, so there is no season-scale story to tell yet. The running numbers are in the rail, every sample's full record is on the <a class='tx' href='/readings/'>readings page</a>, and once there are dry weeks and wet weeks to compare, the rain analysis will appear here.</p>
+{% endif %}
+
+<h2>Where the advisory goes</h2>
+{% if advisories %}
+<p>The note goes to the club's own list and everyone else who has asked for it, and it is printed and taped inside the boathouse door. The <a class='tx' href='/advisories/'>archive</a> has every advisory exactly as it was sent.</p>
+{% else %}
+<p>Advisories go out to the club list once the season's routine is running; each one is archived on the <a class='tx' href='/advisories/'>advisories page</a> exactly as sent. None have been sent yet this season.</p>
+{% endif %}
+<p>All readings are published as an open dataset with a schema, a data dictionary and a license. It is on the <a class='tx' href='/data/'>data page</a>.</p>
+</div>
+<div class="col-rail">
+{{ partials.station_panel() }}
+{{ partials.bands_panel() }}
+<div class="panel">
+  <h4>The season in numbers</h4>
+  <dl class="deflist">
+    <dt>Samples</dt><dd>{{ stats.n }}</dd>
+    <dt>Gaps</dt><dd>{{ stats.gaps }}</dd>
+    <dt>Over {{ criteria.single_sample }}</dt><dd>{{ stats.over_count }} of {{ stats.n }}</dd>
+    <dt>Season GM</dt><dd>{{ stats.season_gm }}</dd>
+    {% if stats.dry_gm is not none %}<dt>Dry GM</dt><dd>{{ stats.dry_gm }}</dd>
+    {% endif %}{% if stats.wet_gm is not none %}<dt>Wet GM</dt><dd>{{ stats.wet_gm }}</dd>
+    {% endif %}<dt>Median</dt><dd>{{ stats.median }}</dd>
+    <dt>Range</dt><dd>{{ commas(stats.lo.ecoli) }} to {{ commas(stats.hi.ecoli) }}</dd>
+    <dt>Colors</dt><dd class="tx">{{ stats.colors_line }}</dd>
+    {% if stats.split_count %}<dt>Splits</dt><dd>{{ stats.split_count }}, all within {{ stats.split_max_log }} log10</dd>
+    {% endif %}</dl>
+</div>
+</div>
+</div>{% endblock %}

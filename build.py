@@ -253,6 +253,7 @@ def main():
         site=site,
         station=dataset["station"],
         license=dataset["license"],
+        row_count=dataset["row_count"],
         ann_week=ann_week,
         criteria=criteria,
         weeks=weeks,
@@ -280,8 +281,6 @@ def main():
         "readings": "readings",
         "advisories": "advisories",
         "methods": "methods",
-        "model": "model",
-        "alerts": "alerts",
         "data": "data",
         "about": "about",
     }

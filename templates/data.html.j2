@@ -1,88 +1,46 @@
 {% extends 'base.html.j2' %}
-{% set title = "Data | Passaic River Water Watch" %}
-{% set description = "The Rutherford Reach Water Quality Dataset v1.0: schema, downloads, license and how to cite it." %}
-{% set nav_page = "data" %}
+{% import 'partials.html.j2' as partials with context %}
+{% set title = "Data | " ~ site.name %}
+{% set description = "The open dataset behind the readings: every record as CSV and JSON, the fields explained, and how to cite it." %}
+
 {% block main %}<div class="grid">
 <div class="col-main">
-<span class="kicker">Rutherford Reach Water Quality Dataset, v1.0</span>
+<span class="kicker">Open dataset</span>
 <h1>Data</h1>
-<p class="lede">Ten Saturdays at one station, in a schema that merges with agency data instead of sitting beside it.</p>
-<p>Everything on this site is published as a table. One row per observation rather than per sampling event, so a row from this dock and a row from a state monitoring station can go in the same file without either being reshaped. The field names follow the Water Quality Exchange vocabulary that state and federal monitoring data already uses, and the download includes a crosswalk that says which project field maps to which WQX field, and where the mapping is imperfect.</p>
+<p class="lede">Every measurement this project has made, as it was made, with the corrections in the open. {{ row_count }} records so far, growing weekly through the season.</p>
 
 <h2>What is in it</h2>
-<ul class="bul">
-<li>Ten E. coli observations, 22 August to 24 October 2026, one per Saturday, with the plate counts behind each.</li>
-<li>The seven field parameters for each of those Saturdays: water temperature, pH, turbidity, nitrate as N, orthophosphate, tide stage, and the 48 hour antecedent rainfall.</li>
-<li>Three quality control rows, the split samples run by a certified laboratory, flagged as quality control rather than field samples so they do not double count.</li>
-<li>The antecedent rainfall column, which is what makes the rain and risk model on the <a class='tx' href='/methods/#model'>methods page</a> reproducible from the file alone.</li>
-</ul>
-<p>That is 63 rows: ten Saturdays times six measured characteristics, plus the three laboratory splits. Tide stage and antecedent rainfall belong to the sampling event rather than to one measurement, so they ride on every row of that event.</p>
-
-<figure class="fig"><div class="figscroll"><svg viewBox="0 0 720 330" role="img" aria-label="One sampling event becomes six observation rows plus a quality control row, with the WQX field each one maps to"><rect x="8" y="96" width="196" height="86" fill="none" stroke="#10161A" stroke-width="1.4"/><text x="20.0" y="118.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9.5" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0.09em">ONE SAMPLING EVENT</text><text x="20.0" y="138.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13" fill="#10161A" text-anchor="start" font-weight="600" letter-spacing="0">RRWQ-2026-W03</text><text x="20.0" y="154.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">2026-09-05, 08:22, ebb</text><text x="20.0" y="168.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">48 h rain 0.08 in</text><path d="M204 139 C 250 139, 250 42, 296 42" fill="none" stroke="#C9CDC6" stroke-width="1"/><rect x="296" y="24" width="416" height="34" fill="none" stroke="#C9CDC6" stroke-width="1"/><text x="306.0" y="39.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="start" font-weight="600" letter-spacing="0">RRWQ-2026-W03-ECOLI</text><text x="306.0" y="52.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">Escherichia coli</text><text x="702.0" y="39.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="end" font-weight="400" letter-spacing="0">220 CFU/100 mL</text><text x="702.0" y="52.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9" fill="#4A555C" text-anchor="end" font-weight="400" letter-spacing="0">characteristic_name, result_value, result_unit</text><path d="M204 139 C 250 139, 250 82, 296 82" fill="none" stroke="#C9CDC6" stroke-width="1"/><rect x="296" y="64" width="416" height="34" fill="none" stroke="#C9CDC6" stroke-width="1"/><text x="306.0" y="79.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="start" font-weight="600" letter-spacing="0">RRWQ-2026-W03-TEMP</text><text x="306.0" y="92.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">Temperature, water</text><text x="702.0" y="79.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="end" font-weight="400" letter-spacing="0">23.6 deg C</text><path d="M204 139 C 250 139, 250 122, 296 122" fill="none" stroke="#C9CDC6" stroke-width="1"/><rect x="296" y="104" width="416" height="34" fill="none" stroke="#C9CDC6" stroke-width="1"/><text x="306.0" y="119.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="start" font-weight="600" letter-spacing="0">RRWQ-2026-W03-PH</text><text x="306.0" y="132.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">pH</text><text x="702.0" y="119.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="end" font-weight="400" letter-spacing="0">7.2</text><path d="M204 139 C 250 139, 250 162, 296 162" fill="none" stroke="#C9CDC6" stroke-width="1"/><rect x="296" y="144" width="416" height="34" fill="none" stroke="#C9CDC6" stroke-width="1"/><text x="306.0" y="159.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="start" font-weight="600" letter-spacing="0">RRWQ-2026-W03-TURB</text><text x="306.0" y="172.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">Turbidity</text><text x="702.0" y="159.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="end" font-weight="400" letter-spacing="0">9 NTU</text><path d="M204 139 C 250 139, 250 202, 296 202" fill="none" stroke="#C9CDC6" stroke-width="1"/><rect x="296" y="184" width="416" height="34" fill="none" stroke="#C9CDC6" stroke-width="1"/><text x="306.0" y="199.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="start" font-weight="600" letter-spacing="0">RRWQ-2026-W03-NO3</text><text x="306.0" y="212.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">Nitrate as N</text><text x="702.0" y="199.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="end" font-weight="400" letter-spacing="0">1.3 mg/L</text><path d="M204 139 C 250 139, 250 242, 296 242" fill="none" stroke="#C9CDC6" stroke-width="1"/><rect x="296" y="224" width="416" height="34" fill="none" stroke="#C9CDC6" stroke-width="1"/><text x="306.0" y="239.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="start" font-weight="600" letter-spacing="0">RRWQ-2026-W03-PO4</text><text x="306.0" y="252.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">Orthophosphate</text><text x="702.0" y="239.0" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10.5" fill="#10161A" text-anchor="end" font-weight="400" letter-spacing="0">0.10 mg/L</text><line x1="8" y1="272" x2="712" y2="272" stroke="#C9CDC6" stroke-width="1"/><text x="8.0" y="292.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">Plus one quality control row where a split went to the laboratory: RRWQ-2026-W02-ECOLI-QC, activity_type</text><text x="8.0" y="306.0" font-family="IBM Plex Sans, Helvetica, sans-serif" font-size="10" fill="#4A555C" text-anchor="start" font-weight="400" letter-spacing="0">quality control split, 1,120 MPN/100 mL by Colilert-18. Ten Saturdays give 63 rows in all.</text></svg></div><figcaption>One Saturday on the dock becomes six rows in the table, one per measured characteristic, plus a quality control row in the weeks a split went to the laboratory. Long format is what lets these rows merge with agency data instead of sitting beside it.</figcaption></figure>
-
-<h2>The schema</h2>
-<div class="scroll"><table class="tbl">
-<caption>Fields, with an example from the 5 September record</caption>
-<thead><tr><th scope="col">Field</th><th scope="col">Type</th><th scope="col">Example</th><th scope="col">Note</th></tr></thead>
-<tbody><tr><td class="mono">record_id</td><td>text</td><td class="mono">RRWQ-2026-W03-ECOLI</td><td>one row per observation, stable and citable</td></tr><tr><td class="mono">monitoring_location_id</td><td>text</td><td class="mono">NBC-01</td><td>the station</td></tr><tr><td class="mono">latitude, longitude</td><td>decimal degrees</td><td class="mono">40.83, -74.11</td><td>published to two decimal places on purpose</td></tr><tr><td class="mono">activity_start_date</td><td>date</td><td class="mono">2026-09-05</td><td>the Saturday</td></tr><tr><td class="mono">activity_start_time</td><td>time</td><td class="mono">08:22</td><td>local, 24 hour</td></tr><tr><td class="mono">activity_type</td><td>text</td><td class="mono">field sample</td><td>or quality control split</td></tr><tr><td class="mono">activity_depth_m</td><td>number</td><td class="mono">0.3</td><td>depth the bottle was opened at</td></tr><tr><td class="mono">tide_stage</td><td>text</td><td class="mono">ebb</td><td>ebb, flood or slack</td></tr><tr><td class="mono">characteristic_name</td><td>text</td><td class="mono">Escherichia coli</td><td>WQX characteristic</td></tr><tr><td class="mono">result_value</td><td>number</td><td class="mono">220</td><td>the reported value</td></tr><tr><td class="mono">result_unit</td><td>text</td><td class="mono">CFU/100 mL</td><td>MPN/100 mL for the laboratory splits</td></tr><tr><td class="mono">analytical_method_id</td><td>text</td><td class="mono">Coliscan Easygel</td><td>Colilert-18 for splits, Standard Methods 9223B</td></tr><tr><td class="mono">antecedent_rain_48h_in</td><td>number</td><td class="mono">0.08</td><td>from the gauge at the boathouse</td></tr><tr><td class="mono">antecedent_rain_source</td><td>text</td><td class="mono">project rain gauge</td><td>never an agency number</td></tr><tr><td class="mono">result_status</td><td>text</td><td class="mono">final</td><td>final or provisional</td></tr><tr><td class="mono">source_url</td><td>path</td><td class="mono">readings.html#w03</td><td>so a single row can be checked without the file</td></tr><tr><td class="mono">license</td><td>text</td><td class="mono">CC BY 4.0</td><td>on every row</td></tr></tbody></table></div>
-<p>The full field list, including the WQX mapping and the missing value convention for each field, is in the data dictionary that ships with the download.</p>
+<p>One row per measurement. Each sampling visit produces a set of rows sharing an activity id: the E. coli count, total coliforms, water temperature, pH, turbidity, nitrate and orthophosphate, each with its method, unit, the 48 hour antecedent rainfall and its source, the tide stage, and a comment field that carries anything a reader would need to judge the number &mdash; plate counts, calibration notes, detection conditions. Nothing has been tidied out.</p>
 
 <h2>Download</h2>
-<ul class="plain">
-<li><a class="tx" href="/assets/data/rutherford-reach-wq-2026.csv">rutherford-reach-wq-2026.csv</a>, the 63 project rows, comma separated.</li>
-<li><a class="tx" href="/assets/data/rutherford-reach-wq-2026.json">rutherford-reach-wq-2026.json</a>, the same rows as JSON, with the station block and the method description in the header.</li>
-</ul>
-<p>Both files are the project rows of v1.0, meaning every record I measured myself at this dock. The full v1.0 deposit also carries the imported agency and portal rows and is published as its own package with a datasheet, a data dictionary and a DOI.</p>
-<p>Both files carry the same rows in the same order, and both are UTF-8 with no proprietary types. If they disagree, the CSV is the one to trust and I want to know about it.</p>
+<p><a class='tx' href='/assets/data/rutherford-reach-wq-2026.csv'>rutherford-reach-wq-2026.csv</a> &middot; <a class='tx' href='/assets/data/rutherford-reach-wq-2026.json'>rutherford-reach-wq-2026.json</a></p>
+<p>The JSON carries the same records plus the station and criteria metadata. Both files are regenerated together on every site build, so they always match the pages.</p>
+
+<h2>Reading the fields</h2>
+<p>The columns follow common water quality data conventions: <code>activity_start_date</code> and <code>activity_start_time</code> are the real clock at collection; <code>characteristic_name</code> names the measurement; <code>result_value</code> and <code>result_unit</code> carry it; <code>result_detection_condition</code> holds non-numeric outcomes such as "too numerous to count" or "not detected"; <code>result_comment</code> is where the honesty lives &mdash; duplicate plate counts, the plated-volume calibration, and any deviation from the standard method.</p>
 
 <h2>How to cite</h2>
-<p class="mono" style="border-left:3px solid var(--border); padding-left:16px; font-size:13px; line-height:1.6">Li, Haolin. <i>Rutherford Reach Water Quality Dataset</i>, v1.0. Passaic River Water Watch, 2026.<br>DOI: pending Zenodo deposit.</p>
-<p>To cite one observation rather than the set, use its record id, for example RRWQ-2026-W03-ECOLI, which is stable and will not be reused if a value is ever corrected. A correction gets a new version of the file and a line in the changelog; the old rows stay where they are.</p>
+<p>Passaic River Water Watch (2026). Rutherford Reach Water Quality Dataset, station {{ station.id }}, Lower Passaic River. Haolin Li. Released under {{ license }}.</p>
 
 <h2>License</h2>
-<p>The data is released under Creative Commons Attribution 4.0. Use it, republish it, put it in a model, hand it to a class. Say where it came from.</p>
+<p>{{ license }}. Use the readings for anything, with attribution. If you find an error, say so &mdash; the contact address is in the footer, and corrections are made in the open.</p>
 
 <h2>What I would want to know if I were downloading this</h2>
-<ul class="bul">
-<li>One station, one sampler, ten weeks. Nobody should fit anything ambitious to it on its own; it is most useful merged with the agency series for this reach, which is why the schema is what it is.</li>
-<li>The E. coli values come from a field method, Coliscan Easygel, not from a certified laboratory. Three of the ten have a laboratory split beside them and they agree within 0.08 log10. The other seven do not have that check.</li>
-<li>Every value is a multiple of 20 because of the plate arithmetic, not because of rounding.</li>
-<li>The rainfall column is my own gauge at the boathouse. It is not a National Weather Service record and should not be merged with one without saying so.</li>
-</ul>
+<p>The record is short and young. Weeks 1 and 2 carry a plated-volume correction, documented in their comments. Rainfall is currently attributed to an airport station three miles away, named in every row, until the project's own gauge is mounted. No laboratory split has been run yet, so the field method has no external check so far. The <a class='tx' href='/methods/'>methods page</a> states every one of these limits in full.</p>
 </div>
 <div class="col-rail">
-<div class="panel pin">
-  <h4>Station</h4>
-  <dl class="deflist">
-    <dt>Id</dt><dd>NBC-01</dd>
-    <dt>Place</dt><dd class="tx">Nereid Boat Club dock, Rutherford, New Jersey</dd>
-    <dt>Coord</dt><dd>40.83 N, 74.11 W</dd>
-    <dt>Water</dt><dd class="tx">Lower Passaic, tidal, below the Dundee Dam</dd>
-    <dt>Method</dt><dd class="tx">Coliscan Easygel, 5 mL, duplicate plates, 24 h at 35 C</dd>
-    <dt>Window</dt><dd>Saturdays 08:15 to 08:45</dd>
-    <dt>Record</dt><dd class="tx">22 August to 24 October 2026</dd>
-    <dt>Samples</dt><dd>10</dd>
-    <dt>Updated</dt><dd>26 October 2026</dd>
-  </dl>
-  <p class="note" style="margin-top:10px">The coordinate is published to two decimal places on purpose. One person stands in the same spot at the same hour every week.</p>
-</div>
-
+{{ partials.station_panel() }}
 <div class="panel">
-  <h4>Dataset</h4>
+  <h4>The record so far</h4>
   <dl class="deflist">
-    <dt>Version</dt><dd>1.0</dd>
-    <dt>Released</dt><dd>26 October 2026</dd>
-    <dt>Rows</dt><dd>63</dd>
-    <dt>Station</dt><dd>NBC-01</dd>
-    <dt>Coverage</dt><dd class="tx">22 Aug to 24 Oct 2026</dd>
-    <dt>Schema</dt><dd class="tx">WQX aligned, long format</dd>
-    <dt>License</dt><dd>CC BY 4.0</dd>
-    <dt>DOI</dt><dd class="tx">pending Zenodo deposit</dd>
+    <dt>Rows</dt><dd>{{ row_count }}</dd>
+    <dt>Visits</dt><dd>{{ stats.n }}</dd>
+    <dt>First</dt><dd class="tx">{{ weeks[0].date_long }}</dd>
+    <dt>Latest</dt><dd class="tx">{{ latest.date_long }}</dd>
+    <dt>Updated</dt><dd>{{ updated_long }}</dd>
+    <dt>License</dt><dd>{{ license }}</dd>
   </dl>
 </div>
-<div class="panel">
-  <h4>Contributing a row</h4>
-  <p class="note">A record is accepted with a duplicate plate count, a recorded incubation time and temperature, a written colony count, and a collection time. Anything missing one of those is held rather than dropped, and I write back.</p>
-</div>
+{{ partials.bands_panel() }}
 </div>
 </div>{% endblock %}

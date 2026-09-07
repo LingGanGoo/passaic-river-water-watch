@@ -180,10 +180,12 @@ def season_stats(weeks, criteria):
         "n": n,
         "gaps": expected - n,
         "season_gm": round(geomean(values)),
-        "dry_gm": round(geomean([w["ecoli"] for w in dry])) if dry else None,
-        "wet_gm": round(geomean([w["ecoli"] for w in wet])) if wet else None,
-        "wet_dry_ratio": (geomean([w["ecoli"] for w in wet])
-                          / geomean([w["ecoli"] for w in dry])) if dry and wet else None,
+        # a geometric mean needs at least two points to mean anything more than
+        # "that one week's value" - don't publish one dressed up as the other
+        "dry_gm": round(geomean([w["ecoli"] for w in dry])) if len(dry) >= 2 else None,
+        "wet_gm": round(geomean([w["ecoli"] for w in wet])) if len(wet) >= 2 else None,
+        "wet_dry_ratio": (geomean([w["ecoli"] for w in wet]) / geomean([w["ecoli"] for w in dry])
+                          if len(dry) >= 2 and len(wet) >= 2 else None),
         "median": f"{median:g}",
         "median_rule": median_rule,
         "over": over,

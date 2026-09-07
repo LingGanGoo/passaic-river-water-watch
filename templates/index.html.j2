@@ -28,7 +28,7 @@
 <span class="kicker">{{ site.kicker }}</span>
 <h1>This week on the river</h1>
 <p class="lede">{{ word(stats.n, true) }} sample{{ 's' if stats.n != 1 }} so far this season{% if stats.over_count %}, {{ word(stats.over_count) }} of {{ 'them' if stats.n != 1 else 'which came back' }} over the {{ criteria.single_sample }} line{% endif %}. Each square below links to the full record.</p>
-<p>I row here twice a day for most of the year, and nobody could tell me what was in the water where we row, so I started testing it myself.</p>
+<p>I row here most afternoons, and nobody could tell me what was in the water where we row, so I started testing it myself.</p>
 <div class="strip">{% for w in weeks %}<a class='cell' href='/readings/#{{ w.id }}'><span class="sr"></span>{{ charts.strip_cells[loop.index0] }}<span class="d">{{ w.date_short }}</span><span class="v">{{ commas(w.ecoli) }}</span></a>{% endfor %}</div><div class="striplegend"><span>{{ charts.band_chip("lg1", "green", 13) }} green, under {{ criteria.geometric_mean }}</span><span>{{ charts.band_chip("lg2", "yellow", 13) }} yellow, {{ criteria.geometric_mean }} to {{ criteria.single_sample }}</span><span>{{ charts.band_chip("lg3", "red", 13) }} red, over {{ criteria.single_sample }}</span><span>CFU per 100 mL</span></div>
 <p class="note" style="margin-top:14px">Every square links to that week's full record.</p>
 

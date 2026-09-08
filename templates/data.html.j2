@@ -13,8 +13,9 @@
 <p>One row per measurement. Each sampling visit produces a set of rows sharing an activity id: the E. coli count, total coliforms, water temperature, pH, turbidity, nitrate and orthophosphate, each with its method, unit, the 48 hour antecedent rainfall and its source, the tide stage, and a comment field that carries anything a reader would need to judge the number &mdash; plate counts, calibration notes, detection conditions. Nothing has been tidied out.</p>
 
 <h2>Download</h2>
-<p><a class='tx' href='/assets/data/rutherford-reach-wq-2026.csv'>rutherford-reach-wq-2026.csv</a> &middot; <a class='tx' href='/assets/data/rutherford-reach-wq-2026.json'>rutherford-reach-wq-2026.json</a></p>
-<p>The JSON carries the same records plus the station and criteria metadata. Both files are regenerated together on every site build, so they always match the pages.</p>
+<p>Water quality records: <a class='tx' href='/assets/data/rutherford-reach-wq-2026.csv'>rutherford-reach-wq-2026.csv</a> &middot; <a class='tx' href='/assets/data/rutherford-reach-wq-2026.json'>rutherford-reach-wq-2026.json</a></p>
+<p>Rain gauge log: <a class='tx' href='/assets/data/rain-log.csv'>rain-log.csv</a> &middot; <a class='tx' href='/assets/data/rain-log.json'>rain-log.json</a></p>
+<p>The JSON files carry the same rows as their CSV twins plus metadata. Every file is regenerated together on every site build, so they always match the pages. The rain log is daily readings from the project's own gauge, published in full &mdash; not only the 48 hour figure attached to each sample, so a reading that falls between two sampling weeks is still on the record.</p>
 
 <h2>Reading the fields</h2>
 <p>The columns follow common water quality data conventions: <code>activity_start_date</code> and <code>activity_start_time</code> are the real clock at collection; <code>characteristic_name</code> names the measurement; <code>result_value</code> and <code>result_unit</code> carry it; <code>result_detection_condition</code> holds non-numeric outcomes such as "too numerous to count" or "not detected"; <code>result_comment</code> is where the honesty lives &mdash; duplicate plate counts, the plated-volume calibration, and any deviation from the standard method.</p>

@@ -298,8 +298,9 @@ def main():
     # publish the dataset itself from data/, the single source of truth
     pub = DIST / "assets" / "data"
     pub.mkdir(parents=True, exist_ok=True)
-    for f in (ROOT / "data").glob("rutherford-reach-*.*"):
-        shutil.copy(f, pub / f.name)
+    for pattern in ("rutherford-reach-*.*", "rain-log.*"):
+        for f in (ROOT / "data").glob(pattern):
+            shutil.copy(f, pub / f.name)
     print(f"copied static assets + dataset -> dist/  [{datetime.now():%H:%M:%S}]")
 
 

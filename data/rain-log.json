@@ -1,0 +1,32 @@
+{
+ "dataset": "Rutherford Reach rain gauge log",
+ "note": "Daily readings from the project rain gauge at the boathouse. Each reading is the accumulation since the gauge was last emptied, read and reset at approximately the same time each day (early evening). The gauge went into service 2 September 2026; there is no gauge record before that date, and antecedent rainfall for weeks sampled earlier is attributed to the nearest airport weather station instead, as stated on each of those records.",
+ "unit": "inches",
+ "readings": [
+  {
+   "date": "2026-09-02",
+   "reading_in": 0.405,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-09-03",
+   "reading_in": 0.235,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-09-04",
+   "reading_in": 0.065,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-09-05",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-09-06",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  }
+ ]
+}

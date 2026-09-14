@@ -111,7 +111,7 @@ def rain_scatter(weeks, criteria, annotate_id, annotate_lines, model_line_in=Non
     def Y(v):
         return ybot - (log10(v) - log10(vmin)) * (ybot - ytop) / (log10(vmax) - log10(vmin))
 
-    out = ['<svg viewBox="0 0 720 430" role="img" aria-label="Each Saturday plotted as '
+    out = ['<svg viewBox="0 0 720 430" role="img" aria-label="Each sample plotted as '
            '48 hour rainfall against E. coli, with the half inch line and the 235 line drawn">',
            patterns("rs")]
     # horizontal log gridlines at the decades
@@ -176,12 +176,12 @@ def rain_scatter(weeks, criteria, annotate_id, annotate_lines, model_line_in=Non
     out.append(f'<line x1="{x0}" y1="378" x2="{x1}" y2="378" stroke="{GRID}" stroke-width="1"/>')
     out.append(text(f1(x0), "396.0", "DRY, under 0.5 in", spacing="0.07em"))
     out.append(text(f1(x0), "410.0",
-                    f"{len(dry)} Saturdays, "
+                    f"{len(dry)} sample{'s' if len(dry) != 1 else ''}, "
                     + ("none over the line" if dry_over == 0 else f"{dry_over} of them over the line"),
                     font=SANS, size=10.5, fill=INK))
     out.append(text("338.0", "396.0", "WET, 0.5 in or more", spacing="0.07em"))
     out.append(text("338.0", "410.0",
-                    f"{len(wet)} Saturdays, "
+                    f"{len(wet)} sample{'s' if len(wet) != 1 else ''}, "
                     + ("none over the line" if wet_over == 0 else f"{wet_over} of them over the line"),
                     font=SANS, size=10.5, fill=INK))
     out.append("</svg>")

@@ -11,6 +11,10 @@
     {
       "id": "w03",
       "say": "First reading from the project\u2019s own rain gauge at the boathouse: 0.00 in in the 48 hours before the sample, so this week\u2019s number is no longer attributed to an airport three miles away. Plated volume was confirmed at a true 5 mL, so the standard multiplier of 20 applies with no correction needed. The plate count below is the sampler\u2019s own direct count off the physical plates (16 and 11), which replaced an earlier photograph-based estimate (approximately 28 and 22) that ran high, likely from misjudging colony color under backlight rather than plain white light."
+    },
+    {
+      "id": "w04",
+      "say": "The rain landed inside this week\u2019s 48 hour window for the first time this season: 1.20 in on the sample day itself, from the project\u2019s own gauge, with the water level visibly raised by flooding on top of a low, ebbing tide. Turbidity dropped to 14.25 cm, the murkiest reading of the season by a wide margin. The plate counts (145 and 150) are the sampler\u2019s own direct count off the physical plates."
     }
   ],
   "advisories": []

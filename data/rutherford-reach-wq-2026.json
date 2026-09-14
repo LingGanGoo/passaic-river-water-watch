@@ -30,7 +30,7 @@
   "unit": "CFU/100 mL",
   "source": "EPA Recreational Water Quality Criteria, 2012, and the 1986 bacteria criteria"
  },
- "row_count": 21,
+ "row_count": 22,
  "records": [
   {
    "organization_id": "PRWW",
@@ -703,6 +703,38 @@
    "antecedent_rain_source": "project rain gauge at the boathouse",
    "source_url": "readings.html#w03",
    "retrieved_on": "2026-09-07"
+  },
+  {
+   "organization_id": "PRWW",
+   "organization_name": "Passaic River Water Watch",
+   "monitoring_location_id": "NBC-01",
+   "monitoring_location_name": "Nereid Boat Club dock, Rutherford, New Jersey",
+   "latitude": "40.83",
+   "longitude": "-74.11",
+   "horizontal_datum": "WGS84",
+   "coordinate_precision_note": "published to two decimal places deliberately; one sampler at a fixed dock",
+   "activity_depth_m": "0.3",
+   "result_status": "final",
+   "data_source": "Passaic River Water Watch",
+   "license": "CC BY 4.0",
+   "tide_stage": "flood, near high",
+   "antecedent_rain_48h_in": "0.03",
+   "antecedent_rain_source": "Teterboro Airport ASOS, about 3 mi NE of the dock; Newark Airport agrees; project gauge not yet installed",
+   "record_id": "RRWQ-2026-W02-ECOLI-QC",
+   "activity_id": "RRWQ-2026-W02-QC",
+   "activity_type": "quality control split",
+   "activity_start_date": "2026-08-31",
+   "activity_start_time": "08:45",
+   "characteristic_name": "Escherichia coli",
+   "result_value": "2420",
+   "result_unit": "MPN/100 mL",
+   "result_detection_condition": "",
+   "analytical_method_id": "Colilert-18",
+   "analytical_method_name": "Colilert-18, IDEXX Quanti-Tray/2000, most probable number",
+   "sample_fraction": "Total",
+   "result_comment": "field split of RRWQ-2026-W02; field result 1620 CFU/100 mL (measured-volume corrected), RPD 39.6%, 0.174 log10 apart; assumed collected as a same-bottle split at the original 31 August sample per the project shipping protocol and analyzed by Colilert-18, unconfirmed with the sampler",
+   "source_url": "readings.html#w02",
+   "retrieved_on": "2026-09-14"
   }
  ]
 }

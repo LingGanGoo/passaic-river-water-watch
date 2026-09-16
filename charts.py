@@ -208,7 +208,8 @@ def season_chart(weeks, criteria):
     rain_px = (rain_base - rain_top) / rain_max
 
     out = ['<svg viewBox="0 0 720 452" role="img" aria-label="E. coli by week on a log '
-           'scale with the 126 and 235 lines, and the 48 hour rainfall for each week below">',
+           'scale with the 126 and 235 lines, the 48 hour rainfall for each week below, '
+           'and laboratory split results shown as open circles where they exist">',
            patterns("sc")]
     d = 10
     while d <= 1000:
@@ -232,10 +233,24 @@ def season_chart(weeks, criteria):
     out.append(f'<polyline points="{pts}" fill="none" stroke="{INK}" stroke-width="1.3"/>')
     for i, w in enumerate(weeks):
         cx, cy = X(i), Y(w["ecoli"])
+        split = w.get("split")
+        ly = Y(split["lab"]) if split else None
+        # when a lab marker sits above the field point, its label claims that
+        # space, so push the field label below its own marker instead of
+        # colliding with it - and the mirror case when the lab reads lower
+        field_label_y = cy + 16 if (ly is not None and ly < cy) else cy - 12
         out.append(f'<rect x="{f1(cx - 6.5)}" y="{f1(cy - 6.5)}" width="13" height="13" '
                    f'fill="url(#sc-{w["band"][0]})" stroke="{INK}" stroke-width="1.4"/>')
-        out.append(text(f1(cx), f1(cy - 12), commas(w["ecoli"]), size=10.5, fill=INK,
+        out.append(text(f1(cx), f1(field_label_y), commas(w["ecoli"]), size=10.5, fill=INK,
                         anchor="middle", weight=600))
+        if split:
+            out.append(f'<line x1="{f1(cx)}" y1="{f1(cy)}" x2="{f1(cx)}" y2="{f1(ly)}" '
+                       f'stroke="{MUT}" stroke-width="1" stroke-dasharray="2 3"/>')
+            out.append(f'<circle cx="{f1(cx)}" cy="{f1(ly)}" r="6.5" fill="{PAPER}" '
+                       f'stroke="{INK}" stroke-width="1.6"/>')
+            lab_label_y = ly - 10 if ly < cy else ly + 16
+            out.append(text(f1(cx), f1(lab_label_y), f"{commas(split['lab'])} lab",
+                            size=9.5, fill=INK, anchor="middle", weight=600))
     out.append(text(f1(x0 + 8), f1(Y(ss) - 7.9), f"{ss}, single sample", fill=RED,
                     extra=f' paint-order="stroke" stroke="{PAPER}" stroke-width="3.2" stroke-linejoin="round"'))
     out.append(text(f1(x0 + 8), f1(Y(gm) + 12.4), f"{gm}, geometric mean criterion", fill=GREEN,

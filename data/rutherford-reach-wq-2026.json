@@ -728,11 +728,11 @@
    "characteristic_name": "Escherichia coli",
    "result_value": "2420",
    "result_unit": "MPN/100 mL",
-   "result_detection_condition": "",
+   "result_detection_condition": "too numerous to count",
    "analytical_method_id": "Colilert-18",
    "analytical_method_name": "Colilert-18, IDEXX Quanti-Tray/2000, most probable number",
    "sample_fraction": "Total",
-   "result_comment": "field split of RRWQ-2026-W02; field result 1620 CFU/100 mL (measured-volume corrected), RPD 39.6%, 0.174 log10 apart; assumed collected as a same-bottle split at the original 31 August sample per the project shipping protocol and analyzed by Colilert-18, unconfirmed with the sampler",
+   "result_comment": "field split of RRWQ-2026-W02, confirmed by the certificate of analysis and chain-of-custody on file: collected 31 August 2026 08:45, received by the lab 09:49 the same morning, analyzed by Pace Analytical Services, LLC-Fairfield NJ (NELAP/TNI accredited, NJ certification 07010), workorder 26H2710, lab ID 26H2710-01, method Colilert-18. The lab flagged its result TNTC: 2420 MPN/100 mL is the upper quantification limit of the standard Quanti-Tray/2000 format at 1:1 dilution, and the true count is greater than that, not equal to it, since the sample was not diluted for a higher precise reading. Field result 1620 CFU/100 mL (measured-volume corrected); the RPD of 39.6% and 0.174 log10 apart are therefore a lower bound on how far the two methods actually differ.",
    "source_url": "readings.html#w02",
    "retrieved_on": "2026-09-14"
   },

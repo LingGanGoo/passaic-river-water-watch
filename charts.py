@@ -249,7 +249,8 @@ def season_chart(weeks, criteria):
             out.append(f'<circle cx="{f1(cx)}" cy="{f1(ly)}" r="6.5" fill="{PAPER}" '
                        f'stroke="{INK}" stroke-width="1.6"/>')
             lab_label_y = ly - 10 if ly < cy else ly + 16
-            out.append(text(f1(cx), f1(lab_label_y), f"{commas(split['lab'])} lab",
+            lab_prefix = ">" if split.get("lab_tntc") else ""
+            out.append(text(f1(cx), f1(lab_label_y), f"{lab_prefix}{commas(split['lab'])} lab",
                             size=9.5, fill=INK, anchor="middle", weight=600))
     out.append(text(f1(x0 + 8), f1(Y(ss) - 7.9), f"{ss}, single sample", fill=RED,
                     extra=f' paint-order="stroke" stroke="{PAPER}" stroke-width="3.2" stroke-linejoin="round"'))

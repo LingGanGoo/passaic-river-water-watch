@@ -116,6 +116,9 @@ def load_weeks(dataset, editorial):
             lab = float(qc["result_value"])
             split = {
                 "lab": lab,
+                # a lab TNTC flag means the true count exceeds this value, so
+                # the reported gap against it is a lower bound, not exact
+                "lab_tntc": bool(qc["result_detection_condition"]),
                 "rpd": abs(lab - value) / ((lab + value) / 2) * 100,
                 "logdiff": abs(math.log10(lab) - math.log10(value)),
             }

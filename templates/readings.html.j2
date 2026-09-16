@@ -48,7 +48,7 @@
         {% endif %}<tr><th scope="row">Reported</th><td class="n">{{ commas(w.ecoli) }} {{ criteria.unit }}</td><th scope="row">Band</th><td class="n">{{ w.band_word }}</td></tr>
       </table></div>
       {% if w.say %}<p class="say">{{ w.say }}</p>
-      {% endif %}{% if w.split %}<p class="say">Split sample. The laboratory reported {{ commas(w.split.lab) }} MPN/100 mL against {{ commas(w.ecoli) }} here, a relative percent difference of {{ '%.1f' % w.split.rpd }}% and {{ '%.3f' % w.split.logdiff }} log10 apart.</p>{% endif %}
+      {% endif %}{% if w.split %}<p class="say">Split sample. The laboratory reported {% if w.split.lab_tntc %}greater than {% endif %}{{ commas(w.split.lab) }} MPN/100 mL against {{ commas(w.ecoli) }} here, a relative percent difference of {% if w.split.lab_tntc %}at least {% endif %}{{ '%.1f' % w.split.rpd }}% and {% if w.split.lab_tntc %}at least {% endif %}{{ '%.3f' % w.split.logdiff }} log10 apart.{% if w.split.lab_tntc %} The lab's result was flagged too numerous to count, so the true gap may be larger than these numbers show.{% endif %}</p>{% endif %}
     </div>
     <div class="plate">{{ charts.record_plates[w.id] }}</div>
   </div>

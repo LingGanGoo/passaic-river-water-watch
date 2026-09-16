@@ -205,6 +205,10 @@ def season_stats(weeks, criteria):
         "split_count": len(splits),
         "split_max_log": (math.ceil(max(s["logdiff"] for s in splits) * 100) / 100
                           if splits else None),
+        # a TNTC-flagged lab result means the true gap could be larger than
+        # computed, so "within X log10" would overstate how well the methods
+        # agree - say "at least" instead whenever any split has that flag
+        "split_any_tntc": any(s.get("lab_tntc") for s in splits),
         # rain-based analysis only makes sense with at least two of each kind of week
         "has_rain_story": len(dry) >= 2 and len(wet) >= 2,
     }

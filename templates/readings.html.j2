@@ -7,7 +7,7 @@
 <div class="col-main">
 <span class="kicker">Station {{ station.id }}, {{ weeks[0].date.year }} season</span>
 <h1>Readings</h1>
-<p class="lede">{{ word(stats.n, true) }} sample{{ 's' if stats.n != 1 }} so far, with every field on the sheet{% if stats.split_count %}, both plate counts, and the {{ word(stats.split_count) }} laboratory splits where they exist{% else %} and both plate counts{% endif %}.</p>
+<p class="lede">{{ word(stats.n, true) }} sample{{ 's' if stats.n != 1 }} so far, with every field on the sheet{% if stats.split_count %}, both plate counts, and the {{ word(stats.split_count) }} laboratory split{{ 's' if stats.split_count != 1 }} where {{ 'it exists' if stats.split_count == 1 else 'they exist' }}{% else %} and both plate counts{% endif %}.</p>
 <figure class="fig"><div class="figscroll">{{ charts.season_chart }}</div><figcaption>E. coli by week on a log scale, with the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion dashed and the {{ criteria.single_sample }} {{ criteria.unit }} single sample value solid. An open circle, connected by a dotted line, marks a laboratory split where one exists. The bars below the axis are the rainfall in the 48 hours before each sample, where a rain reading exists.</figcaption></figure>
 
 <h2>The season, counted</h2>

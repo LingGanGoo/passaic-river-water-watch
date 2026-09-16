@@ -67,7 +67,7 @@
     {% endif %}<dt>Median</dt><dd>{{ stats.median }}</dd>
     <dt>Range</dt><dd>{{ commas(stats.lo.ecoli) }} to {{ commas(stats.hi.ecoli) }}</dd>
     <dt>Colors</dt><dd class="tx">{{ stats.colors_line }}</dd>
-    {% if stats.split_count %}<dt>Splits</dt><dd>{{ stats.split_count }}, all within {{ stats.split_max_log }} log10</dd>
+    {% if stats.split_count %}<dt>Splits</dt><dd>{{ stats.split_count }}, {% if stats.split_any_tntc %}at least{% else %}all within{% endif %} {{ stats.split_max_log }} log10 apart</dd>
     {% endif %}</dl>
 </div>
 </div>

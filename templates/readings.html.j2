@@ -27,7 +27,7 @@
 <tr><td>Advisory colors</td><td class="n">{{ stats.colors_line }}</td><td>one call per sample against the bands</td></tr>
 </tbody></table></div>
 {% if stats.has_rain_story %}
-<p>Rain over half an inch preceded {{ word(stats.wet_over_count) }} of the {{ word(stats.over_count) }} exceedance{{ 's' if stats.over_count != 1 }}. The <a class='tx' href='/methods/#model'>rain and risk section</a> reports what that pattern gets wrong as well as what it gets right.</p>
+<p>Rain over half an inch preceded {{ word(stats.wet_over_count) }} of the {{ word(stats.over_count) }} exceedance{{ 's' if stats.over_count != 1 }}. The <a class='tx' href='/methods/#limits'>rain and risk section</a> reports what that pattern gets wrong as well as what it gets right.</p>
 {% endif %}
 {% if stats.n > 1 %}<p class="note">Ranges on the record plates are over the weeks of the season so far.</p>
 {% endif %}{% for w in weeks %}<article class="record" id="{{ w.id }}">

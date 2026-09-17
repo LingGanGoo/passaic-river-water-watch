@@ -36,6 +36,10 @@
 <h2>What the season showed</h2>
 <p>The dry weeks had a geometric mean of {{ stats.dry_gm }} {{ criteria.unit }}. The wet ones, meaning more than half an inch of rain in the 48 hours before the sample, had a geometric mean of {{ stats.wet_gm }}{% if stats.wet_dry_ratio >= 1 %}, which is {{ '%.1f' % stats.wet_dry_ratio }} times higher{% else %} &mdash; lower than the dry weeks, which is worth sitting with rather than explaining away{% endif %}. {{ word(stats.wet_count, true) }} week{{ 's were' if stats.wet_count != 1 else ' was' }} wet and {{ word(stats.wet_over_count) }} of those went over {{ criteria.single_sample }}.</p>
 <p>The season geometric mean across all {{ word(stats.n) }} weeks is {{ stats.season_gm }} {{ criteria.unit }}, against the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion. The arithmetic behind it is on the <a class='tx' href='/readings/'>readings page</a>.</p>
+{% set split_weeks = weeks | selectattr('split') | list %}
+{% if split_weeks %}
+<p>{{ word(split_weeks|length, true) }} reading{{ 's' if split_weeks|length != 1 }} so far {{ 'has' if split_weeks|length == 1 else 'have' }} also gone to a certified laboratory as a check on the field method. {% for w in split_weeks %}Week {{ w.num }}'s split came back {% if w.split.lab_tntc %}greater than {% endif %}{{ commas(w.split.lab) }} MPN/100 mL against {{ commas(w.ecoli) }} {{ criteria.unit }} here{% if not loop.last %}; {% endif %}{% endfor %} &mdash; the two methods do not agree closely, but they have called the same band every time. The full comparison is on the <a class='tx' href='/methods/#qc'>methods page</a>.</p>
+{% endif %}
 {% if charts.rain_scatter %}
 <figure class="fig"><div class="figscroll">{{ charts.rain_scatter }}</div><figcaption>Each sample plotted as antecedent rainfall against E. coli.{% if ann_week %} The circled point is {{ ann_week.date_noyear }}.{% endif %}</figcaption></figure>
 {% endif %}

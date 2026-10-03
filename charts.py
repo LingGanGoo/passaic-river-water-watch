@@ -174,7 +174,7 @@ def rain_scatter(weeks, criteria, annotate_id, annotate_lines, model_line_in=Non
     dry_over = sum(1 for w in dry if w["ecoli"] > ss)
     wet_over = sum(1 for w in wet if w["ecoli"] > ss)
     out.append(f'<line x1="{x0}" y1="378" x2="{x1}" y2="378" stroke="{GRID}" stroke-width="1"/>')
-    out.append(text(f1(x0), "396.0", "DRY, under 0.5 in", spacing="0.07em"))
+    out.append(text(f1(x0), "396.0", "UNDER 0.5 in", spacing="0.07em"))
     out.append(text(f1(x0), "410.0",
                     f"{len(dry)} sample{'s' if len(dry) != 1 else ''}, "
                     + ("none over the line" if dry_over == 0 else f"{dry_over} of them over the line"),

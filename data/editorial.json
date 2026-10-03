@@ -18,7 +18,11 @@
     },
     {
       "id": "w05",
-      "say": "Turbidity reached 82 cm, the clearest reading of the season. Two gauge readings before the sample, 0.10 in and 0.18 in, add up to 0.28 in of antecedent rain, the second logged under the following calendar day but confirmed to have fallen before this sample. Plate counts (23 and 30) are the sampler\u2019s own direct count off the physical plates."
+      "say": "Turbidity reached 82 cm, the clearest reading of the season to that point. Two gauge readings before the sample, 0.10 in and 0.18 in, add up to 0.28 in of antecedent rain, the second logged under the following calendar day but confirmed to have fallen before this sample. Plate counts (23 and 30) are the sampler\u2019s own direct count off the physical plates."
+    },
+    {
+      "id": "w06",
+      "say": "Turbidity reached 92 cm, clearer than week 5\u2019s 82 cm. The 48 hour antecedent rain is 0.00 in, which makes this a dry week by the site\u2019s own rule, but the gauge logged 1.25 in on 27 September, 1.11 in on 28 September and 0.15 in on 29 September, 2.51 in in all, in the days before the window opened. A week like this is why the 48 hour figure needs the full rain log beside it. Plate counts (32 and 29) are the sampler\u2019s own direct count off the physical plates. This was a laboratory split sample, taken on a Friday morning; the laboratory result is pending and will be added when it arrives."
     }
   ],
   "advisories": []

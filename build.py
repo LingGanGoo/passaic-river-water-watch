@@ -136,6 +136,7 @@ def load_weeks(dataset, editorial):
             "ecoli": value,
             "ecoli_comment": ec["result_comment"],
             "rain": opt_float(ec["antecedent_rain_48h_in"]),
+            "rain_min": bool(ed_weeks.get(f"w{i:02d}", {}).get("rain_is_minimum")),
             "temp": val("Temperature, water"),
             "ph": display("pH"),
             "turbidity": val("Turbidity"),

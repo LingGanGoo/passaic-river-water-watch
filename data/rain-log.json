@@ -1,6 +1,6 @@
 {
  "dataset": "Rutherford Reach rain gauge log",
- "note": "Daily readings from the project rain gauge at the boathouse. Each reading is the accumulation since the gauge was last emptied, read and reset at approximately the same time each day (early evening). The gauge went into service 2 September 2026; there is no gauge record before that date, and antecedent rainfall for weeks sampled earlier is attributed to the nearest airport weather station instead, as stated on each of those records.",
+ "note": "Daily readings from the project rain gauge at the boathouse. Each reading is the accumulation since the gauge was last emptied, read and reset about once a day. The time of day has varied, so a reading is dated by the day it was read, not by when the rain fell. The gauge went into service 2 September 2026; there is no gauge record before that date, and antecedent rainfall for weeks sampled earlier is attributed to the nearest airport weather station instead, as stated on each of those records.",
  "unit": "inches",
  "readings": [
   {
@@ -156,6 +156,56 @@
   {
    "date": "2026-10-02",
    "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-03",
+   "reading_in": 0.05,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-04",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-05",
+   "reading_in": 0.05,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-06",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-07",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-08",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-09",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-10",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-11",
+   "reading_in": 0.58,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-12",
+   "reading_in": 2.5,
    "source": "project rain gauge at the boathouse"
   }
  ]

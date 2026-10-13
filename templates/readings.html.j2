@@ -8,7 +8,7 @@
 <span class="kicker">Station {{ station.id }}, {{ weeks[0].date.year }} season</span>
 <h1>Readings</h1>
 <p class="lede">{{ word(stats.n, true) }} sample{{ 's' if stats.n != 1 }} so far, with every field on the sheet{% if stats.split_count %}, both plate counts, and the {{ word(stats.split_count) }} laboratory split{{ 's' if stats.split_count != 1 }} where {{ 'it exists' if stats.split_count == 1 else 'they exist' }}{% else %} and both plate counts{% endif %}.</p>
-<figure class="fig"><div class="figscroll">{{ charts.season_chart }}</div><figcaption>E. coli by week on a log scale, with the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion dashed and the {{ criteria.single_sample }} {{ criteria.unit }} single sample value solid. An open circle, connected by a dotted line, marks a laboratory split where one exists. The bars below the axis are the rainfall in the 48 hours before each sample, where a rain reading exists.</figcaption></figure>
+<figure class="fig"><div class="figscroll">{{ charts.season_chart }}</div><figcaption>E. coli by week on a log scale, with the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion dashed and the {{ criteria.single_sample }} {{ criteria.unit }} single sample value solid. An open circle, connected by a dotted line, marks a laboratory split where one exists. The bars below the axis are the rainfall in the 48 hours before each sample, where a rain reading exists.{% if weeks | selectattr('rain_min') | list %} A plus sign marks a week where the rain figure is a minimum.{% endif %}</figcaption></figure>
 
 <h2>The season, counted</h2>
 <p>Every number below comes from the record{{ 's' if stats.n != 1 }} on this page. Where a statistic needs a rule, the rule is printed with it.</p>
@@ -40,7 +40,7 @@
     <div>
       <div class="scroll"><table class="tbl">
         <tr><th scope="col">Collected</th><td class="n">{{ w.time }}</td><th scope="col">Tide</th><td class="n">{{ w.tide }}</td></tr>
-        <tr><th scope="row">48 h rain</th><td class="n">{% if w.rain is not none %}{{ '%.2f' % w.rain }} in{% else %}not recorded{% endif %}</td><th scope="row">Water temp</th><td class="n">{% if w.temp is not none %}{{ '%.1f' % w.temp }} C{% else %}&mdash;{% endif %}</td></tr>
+        <tr><th scope="row">48 h rain</th><td class="n">{% if w.rain is not none %}{{ 'at least ' if w.rain_min }}{{ '%.2f' % w.rain }} in{% else %}not recorded{% endif %}</td><th scope="row">Water temp</th><td class="n">{% if w.temp is not none %}{{ '%.1f' % w.temp }} C{% else %}&mdash;{% endif %}</td></tr>
         <tr><th scope="row">pH</th><td class="n">{{ w.ph or '&mdash;' }}</td><th scope="row">Turbidity</th><td class="n">{% if w.turbidity is not none %}{{ '%g' % w.turbidity }} {{ w.turbidity_unit }}{% else %}&mdash;{% endif %}</td></tr>
         <tr><th scope="row">Nitrate as N</th><td class="n">{{ w.nitrate_raw or '&mdash;' }}{% if w.nitrate is not none %} mg/L{% endif %}</td><th scope="row">Orthophosphate</th><td class="n">{{ w.orthop_str or '&mdash;' }}</td></tr>
         {% if w.coliform %}<tr><th scope="row">Total coliforms</th><td class="n">{{ w.coliform }}</td><th scope="row"></th><td class="n"></td></tr>

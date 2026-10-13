@@ -273,7 +273,7 @@ def season_chart(weeks, criteria):
             out.append(f'<line x1="{f1(cx - 13)}" y1="{rain_base}" x2="{f1(cx + 13)}" '
                        f'y2="{rain_base}" stroke="{MUT}" stroke-width="1.2"/>')
             label_y = rain_base - 5
-        rain_label = "n/a" if w["rain"] is None else f"{w['rain']:.2f}"
+        rain_label = "n/a" if w["rain"] is None else f"{w['rain']:.2f}" + ("+" if w.get("rain_min") else "")
         out.append(text(f1(cx), f1(label_y), rain_label, size=9.5, anchor="middle"))
         day, mon = w["date_short"].split()
         out.append(text(f1(cx), f1(rain_base + 16), day, anchor="middle"))
@@ -325,7 +325,7 @@ def record_plate(week, index, ranges):
                        f'fill="url(#{prefix}-{week["band"][0]})" stroke="{INK}" stroke-width="1.2"/>')
         else:
             out.append(f'<rect x="{f1(cx - 3.5)}" y="{f1(ty - 3.5)}" width="7" height="7" fill="{INK}"/>')
-        out.append(text("250.0", f1(ty + 3), PLATE_FMT[key](v), fill=INK, anchor="end", weight=600))
+        out.append(text("250.0", f1(ty + 3), PLATE_FMT[key](v) + ("+" if key == "rain" and week.get("rain_min") else ""), fill=INK, anchor="end", weight=600))
         ty += 24
     out.append("</svg>")
     return "".join(out)

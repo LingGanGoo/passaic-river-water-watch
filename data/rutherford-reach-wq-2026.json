@@ -21,7 +21,7 @@
  "methods": {
   "field": "Coliscan Easygel, 5 mL, duplicate plates, 24 h at 35 C, purple to dark blue colonies counted as E. coli; pink, red and magenta recorded as other coliforms and not counted; teal and white not counted",
   "laboratory_splits": "Colilert-18 Quanti-Tray, Standard Methods 9223B",
-  "reported_value": "mean of the two duplicate plates, colonies on a 5 mL plate multiplied by 20",
+  "reported_value": "mean of the two duplicate plates, divided by the plated volume, times 100, giving CFU/100 mL; at the standard 5 mL that is a multiplier of 20; weeks 1 and 2 were plated at about 8.3 mL, a multiplier of 12, as recorded in each result_comment",
   "antecedent_rainfall": "project rain gauge at the boathouse, 48 hours before the sample"
  },
  "criteria": {

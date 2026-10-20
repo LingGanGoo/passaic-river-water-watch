@@ -207,6 +207,21 @@
    "date": "2026-10-12",
    "reading_in": 2.5,
    "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-16",
+   "reading_in": 0.05,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-17",
+   "reading_in": 0.34,
+   "source": "project rain gauge at the boathouse"
+  },
+  {
+   "date": "2026-10-18",
+   "reading_in": 0.0,
+   "source": "project rain gauge at the boathouse"
   }
  ]
 }

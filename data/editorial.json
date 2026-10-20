@@ -28,6 +28,10 @@
       "id": "w07",
       "rain_is_minimum": true,
       "say": "Turbidity reached 96 cm, the clearest reading of the season to that point. The 48 hour antecedent rain figure is a minimum, not an exact number: 0.58 in was read at 9:00 on 11 October, before the sample, and 2.50 in was read at noon on 12 October, a reading that covers hours both before and after the 5:45 PM sample. The sampler confirmed that some of it fell before the sample and some after but did not record how much, so the true figure is above 0.58 in by an unknown amount. Either way this is a wet week. There is no sample for the week of 4 October; the previous one was the 2 October laboratory split. Plate counts (44 and 50) are the sampler\u2019s own direct count off the physical plates."
+    },
+    {
+      "id": "w08",
+      "say": "Water temperature fell to 14.2 C (57.5 F), the coldest of the season, and turbidity read 95 cm, nearly matching last week\u2019s season-clearest 96 cm. The 48 hour antecedent rain is 0.34 in, read on 17 October and confirmed by the sampler to have fallen after 5 PM on 16 October; the 0.05 in read at 7:40 on 16 October came before the window opened, and the gauge read 0.00 in on 18 October. Plate counts (45 and 40) are the sampler\u2019s own direct count off the physical plates. Both plates also carried many brown or olive colonies, a color not seen on earlier plates; they are not counted as E. coli. No laboratory split was sent this week."
     }
   ],
   "advisories": []

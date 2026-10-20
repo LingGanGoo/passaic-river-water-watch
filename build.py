@@ -204,6 +204,14 @@ def season_stats(weeks, criteria):
         "colors": colors,
         "colors_line": ", ".join(f"{colors[b]} {b}" for b in ("green", "yellow", "red")
                                  if colors[b]),
+        # duplicate-plate precision, as the range percent difference NJDEP's harbor QAPP uses
+        "dup_worst": max(({"num": w["num"], "a": w["plate_a"], "b": w["plate_b"],
+                           "rpd": abs(w["plate_a"] - w["plate_b"]) / ((w["plate_a"] + w["plate_b"]) / 2) * 100}
+                          for w in weeks if w["plate_a"] and w["plate_b"]),
+                         key=lambda d: d["rpd"], default=None),
+        "dup_count": sum(1 for w in weeks if w["plate_a"] and w["plate_b"]),
+        "dup_within": sum(1 for w in weeks if w["plate_a"] and w["plate_b"]
+                          and abs(w["plate_a"] - w["plate_b"]) / ((w["plate_a"] + w["plate_b"]) / 2) * 100 <= 50),
         "split_count": len(splits),
         "split_pending_weeks": [w["num"] for w in weeks if w.get("split_pending")],
         # round toward the claim: up for "within X", down for "at least X"

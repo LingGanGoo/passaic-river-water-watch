@@ -204,7 +204,9 @@ def season_stats(weeks, criteria):
         "colors_line": ", ".join(f"{colors[b]} {b}" for b in ("green", "yellow", "red")
                                  if colors[b]),
         "split_count": len(splits),
-        "split_max_log": (math.ceil(max(s["logdiff"] for s in splits) * 100) / 100
+        # round toward the claim: up for "within X", down for "at least X"
+        "split_max_log": (((math.floor if any(s.get("lab_tntc") for s in splits) else math.ceil)(
+                              max(s["logdiff"] for s in splits) * 100) / 100)
                           if splits else None),
         # a TNTC-flagged lab result means the true gap could be larger than
         # computed, so "within X log10" would overstate how well the methods

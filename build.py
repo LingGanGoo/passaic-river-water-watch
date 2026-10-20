@@ -152,6 +152,7 @@ def load_weeks(dataset, editorial):
             "band_word": band.upper(),
             "split": split,
             "say": ed_weeks.get(f"w{i:02d}", {}).get("say", ""),
+            "split_pending": ed_weeks.get(f"w{i:02d}", {}).get("split_pending", False),
         }
         weeks.append(w)
     return weeks
@@ -204,6 +205,7 @@ def season_stats(weeks, criteria):
         "colors_line": ", ".join(f"{colors[b]} {b}" for b in ("green", "yellow", "red")
                                  if colors[b]),
         "split_count": len(splits),
+        "split_pending_weeks": [w["num"] for w in weeks if w.get("split_pending")],
         # round toward the claim: up for "within X", down for "at least X"
         "split_max_log": (((math.floor if any(s.get("lab_tntc") for s in splits) else math.ceil)(
                               max(s["logdiff"] for s in splits) * 100) / 100)
@@ -251,8 +253,7 @@ def main():
                 ann["second_line"],
             ]
         scatter = charts.rain_scatter(rained, criteria,
-                                      ann["week"] if ann_week else None, ann_lines,
-                                      model_line_in=site.get("model_line_in"))
+                                      ann["week"] if ann_week else None, ann_lines)
 
     ranges = {}
     for key in ("ecoli", "rain", "temp", "turbidity", "nitrate", "orthop"):

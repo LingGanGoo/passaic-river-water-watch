@@ -94,7 +94,7 @@ def bands_legend(criteria):
     return "".join(out)
 
 
-def rain_scatter(weeks, criteria, annotate_id, annotate_lines, model_line_in=None):
+def rain_scatter(weeks, criteria, annotate_id, annotate_lines):
     """Home page figure: 48 h rainfall against E. coli, log y, one point per week."""
     ss = criteria["single_sample"]
     rains = [w["rain"] for w in weeks]
@@ -131,13 +131,6 @@ def rain_scatter(weeks, criteria, annotate_id, annotate_lines, model_line_in=Non
     ys = f1(Y(ss))
     out.append(f'<line x1="{x0}" y1="{ys}" x2="{x1}" y2="{ys}" stroke="{RED}" stroke-width="1.6"/>')
     out.append(text(f1(x0 + 4), f1(Y(ss) - 6), f"{ss} CFU/100 mL", size=10.5, fill=RED))
-    # the model line
-    if model_line_in is not None:
-        xm = f1(X(model_line_in))
-        out.append(f'<line x1="{xm}" y1="{ytop}" x2="{xm}" y2="{ybot}" stroke="{MUT}" '
-                   f'stroke-width="1.1" stroke-dasharray="2 3"/>')
-        out.append(text(f1(X(model_line_in) - 6), f1(ytop + 12),
-                        f"model line, {model_line_in} in", anchor="end"))
     # axes
     out.append(f'<line x1="{x0}" y1="{ytop}" x2="{x0}" y2="{ybot}" stroke="{INK}" stroke-width="1.2"/>')
     out.append(f'<line x1="{x0}" y1="{ybot}" x2="{x1}" y2="{ybot}" stroke="{INK}" stroke-width="1.2"/>')
@@ -168,22 +161,18 @@ def rain_scatter(weeks, criteria, annotate_id, annotate_lines, model_line_in=Non
         for i, line in enumerate(annotate_lines):
             out.append(text(f1(ann[0] + 20), f1(ann[1] + 26 + 13 * i), line, font=SANS,
                             size=10.5, fill=INK))
-    # the dry and wet summary under the axis
-    dry = [w for w in weeks if w["rain"] < 0.5]
-    wet = [w for w in weeks if w["rain"] >= 0.5]
-    dry_over = sum(1 for w in dry if w["ecoli"] > ss)
-    wet_over = sum(1 for w in wet if w["ecoli"] > ss)
+    # the dry, in-between and wet summary under the axis, on the same cutoffs as the stats
+    groups = [("DRY, under 0.25 in", [w for w in weeks if w["rain"] < 0.25]),
+              ("BETWEEN, 0.25 to 0.5 in", [w for w in weeks if 0.25 <= w["rain"] < 0.5]),
+              ("WET, 0.5 in or more", [w for w in weeks if w["rain"] >= 0.5])]
     out.append(f'<line x1="{x0}" y1="378" x2="{x1}" y2="378" stroke="{GRID}" stroke-width="1"/>')
-    out.append(text(f1(x0), "396.0", "UNDER 0.5 in", spacing="0.07em"))
-    out.append(text(f1(x0), "410.0",
-                    f"{len(dry)} sample{'s' if len(dry) != 1 else ''}, "
-                    + ("none over the line" if dry_over == 0 else f"{dry_over} of them over the line"),
-                    font=SANS, size=10.5, fill=INK))
-    out.append(text("338.0", "396.0", "WET, 0.5 in or more", spacing="0.07em"))
-    out.append(text("338.0", "410.0",
-                    f"{len(wet)} sample{'s' if len(wet) != 1 else ''}, "
-                    + ("none over the line" if wet_over == 0 else f"{wet_over} of them over the line"),
-                    font=SANS, size=10.5, fill=INK))
+    for gx, (label, group) in zip((x0, 276, 474), groups):
+        over = sum(1 for w in group if w["ecoli"] > ss)
+        out.append(text(f1(gx), "396.0", label, spacing="0.07em"))
+        out.append(text(f1(gx), "410.0",
+                        f"{len(group)} sample{'s' if len(group) != 1 else ''}, "
+                        + ("none over the line" if over == 0 else f"{over} of them over the line"),
+                        font=SANS, size=10.5, fill=INK))
     out.append("</svg>")
     return "".join(out)
 

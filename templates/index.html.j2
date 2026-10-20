@@ -34,11 +34,12 @@
 
 {% if stats.has_rain_story %}
 <h2>What the season showed</h2>
-<p>The dry weeks had a geometric mean of {{ stats.dry_gm }} {{ criteria.unit }}. The wet ones, meaning more than half an inch of rain in the 48 hours before the sample, had a geometric mean of {{ stats.wet_gm }}{% if stats.wet_dry_ratio >= 1 %}, which is {{ '%.1f' % stats.wet_dry_ratio }} times higher{% else %} &mdash; lower than the dry weeks, which is worth sitting with rather than explaining away{% endif %}. {{ word(stats.wet_count, true) }} week{{ 's were' if stats.wet_count != 1 else ' was' }} wet and {{ word(stats.wet_over_count) }} of those went over {{ criteria.single_sample }}.</p>
-<p>The season geometric mean across all {{ word(stats.n) }} weeks is {{ stats.season_gm }} {{ criteria.unit }}, against the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion. The arithmetic behind it is on the <a class='tx' href='/readings/'>readings page</a>.</p>
+<p>The dry weeks, meaning under a quarter inch of rain in the 48 hours before the sample, had a geometric mean of {{ commas(stats.dry_gm) }} {{ criteria.unit }}. The wet ones, meaning half an inch or more, had a geometric mean of {{ commas(stats.wet_gm) }}{% if stats.wet_dry_ratio >= 1 %}, which is {{ '%.1f' % stats.wet_dry_ratio }} times higher{% else %} &mdash; lower than the dry weeks, which is worth sitting with rather than explaining away{% endif %}. {{ word(stats.wet_count, true) }} week{{ 's were' if stats.wet_count != 1 else ' was' }} wet and {{ word(stats.wet_over_count) }} of those went over {{ criteria.single_sample }}.{% set mid = stats.n - stats.dry_count - stats.wet_count %}{% if mid %} {{ word(mid, true) }} week{{ 's' if mid != 1 }} fell between a quarter and half an inch and {{ 'are' if mid != 1 else 'is' }} counted in neither group.{% endif %}</p>
+<p>The season geometric mean across all {{ word(stats.n) }} weeks is {{ commas(stats.season_gm) }} {{ criteria.unit }}, against the {{ criteria.geometric_mean }} {{ criteria.unit }} geometric mean criterion. The arithmetic behind it is on the <a class='tx' href='/readings/'>readings page</a>.</p>
 {% set split_weeks = weeks | selectattr('split') | list %}
 {% if split_weeks %}
-<p>{{ word(split_weeks|length, true) }} reading{{ 's' if split_weeks|length != 1 }} so far {{ 'has' if split_weeks|length == 1 else 'have' }} also gone to a certified laboratory as a check on the field method. {% for w in split_weeks %}Week {{ w.num }}'s split came back {% if w.split.lab_tntc %}greater than {% endif %}{{ commas(w.split.lab) }} MPN/100 mL against {{ commas(w.ecoli) }} {{ criteria.unit }} here{% if not loop.last %}; {% endif %}{% endfor %} &mdash; the two methods do not agree closely, but {{ 'both called the same band' if split_weeks|length == 1 else 'they have called the same band every time' }}. The full comparison is on the <a class='tx' href='/methods/#qc'>methods page</a>.</p>
+{% set sent = split_weeks|length + stats.split_pending_weeks|length %}
+<p>{{ word(sent, true) }} reading{{ 's' if sent != 1 }} so far {{ 'has' if sent == 1 else 'have' }} also gone to a certified laboratory as a check on the field method. {% for w in split_weeks %}Week {{ w.num }}'s split came back {% if w.split.lab_tntc %}greater than {% endif %}{{ commas(w.split.lab) }} MPN/100 mL against {{ commas(w.ecoli) }} {{ criteria.unit }} here{% if not loop.last %}; {% endif %}{% endfor %} &mdash; the two methods do not agree closely, but {{ 'both called the same band' if split_weeks|length == 1 else 'they have called the same band every time' }}. {% for n in stats.split_pending_weeks %}Week {{ n }}'s result is still pending. {% endfor %}The full comparison is on the <a class='tx' href='/methods/#qc'>methods page</a>.</p>
 {% endif %}
 {% if charts.rain_scatter %}
 <figure class="fig"><div class="figscroll">{{ charts.rain_scatter }}</div><figcaption>Each sample plotted as antecedent rainfall against E. coli.{% if ann_week %} The circled point is {{ ann_week.date_noyear }}.{% endif %}{% if weeks | selectattr('rain_min') | list %} A week whose rain figure is a minimum is plotted at that minimum.{% endif %}</figcaption></figure>
@@ -52,9 +53,9 @@
 {% if advisories %}
 <p>Each advisory is archived on the <a class='tx' href='/advisories/'>advisories page</a> exactly as it was sent.</p>
 {% else %}
-<p>The plan is a short weekly note once the season's routine supports sending one regularly. Each will be archived on the <a class='tx' href='/advisories/'>advisories page</a> exactly as sent. None have been sent yet this season.</p>
+<p>The plan is a short weekly note, archived on the <a class='tx' href='/advisories/'>advisories page</a> exactly as sent. None has been sent yet this season.</p>
 {% endif %}
-<p>All readings are published as an open dataset with a schema, a data dictionary and a license. It is on the <a class='tx' href='/data/'>data page</a>.</p>
+<p>All readings are published as an open dataset, with a guide to every field and an open license. It is on the <a class='tx' href='/data/'>data page</a>.</p>
 </div>
 <div class="col-rail">
 {{ partials.station_panel() }}
@@ -65,9 +66,9 @@
     <dt>Samples</dt><dd>{{ stats.n }}</dd>
     <dt>Gaps</dt><dd>{{ stats.gaps }}</dd>
     <dt>Over {{ criteria.single_sample }}</dt><dd>{{ stats.over_count }} of {{ stats.n }}</dd>
-    <dt>Season GM</dt><dd>{{ stats.season_gm }}</dd>
-    {% if stats.dry_gm is not none %}<dt>Dry GM</dt><dd>{{ stats.dry_gm }}</dd>
-    {% endif %}{% if stats.wet_gm is not none %}<dt>Wet GM</dt><dd>{{ stats.wet_gm }}</dd>
+    <dt>Season GM</dt><dd>{{ commas(stats.season_gm) }}</dd>
+    {% if stats.dry_gm is not none %}<dt>Dry GM</dt><dd>{{ commas(stats.dry_gm) }}</dd>
+    {% endif %}{% if stats.wet_gm is not none %}<dt>Wet GM</dt><dd>{{ commas(stats.wet_gm) }}</dd>
     {% endif %}<dt>Median</dt><dd>{{ stats.median }}</dd>
     <dt>Range</dt><dd>{{ commas(stats.lo.ecoli) }} to {{ commas(stats.hi.ecoli) }}</dd>
     <dt>Colors</dt><dd class="tx">{{ stats.colors_line }}</dd>

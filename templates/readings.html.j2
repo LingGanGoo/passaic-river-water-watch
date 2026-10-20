@@ -18,18 +18,18 @@
 <tbody>
 <tr><td>Samples</td><td class="n">{{ stats.n }}</td><td>one grab sample per visit</td></tr>
 <tr><td>Exceedances of {{ criteria.single_sample }}</td><td class="n">{{ stats.over_count }}</td><td>{% if stats.over_count %}week{{ 's' if stats.over_count != 1 }} {{ stats.over_weeks }}{% else %}none yet{% endif %}</td></tr>
-<tr><td>Season geometric mean</td><td class="n">{{ stats.season_gm }}</td><td>antilog of the mean of the log10 of all values</td></tr>
-{% if stats.dry_gm is not none %}<tr><td>Dry weather geometric mean</td><td class="n">{{ stats.dry_gm }}</td><td>the {{ word(stats.dry_count) }} week{{ 's' if stats.dry_count != 1 }} with under 0.25 in of antecedent rain</td></tr>
-{% endif %}{% if stats.wet_gm is not none %}<tr><td>Wet weather geometric mean</td><td class="n">{{ stats.wet_gm }}</td><td>the {{ word(stats.wet_count) }} week{{ 's' if stats.wet_count != 1 }} with 0.5 in or more</td></tr>
+<tr><td>Season geometric mean</td><td class="n">{{ commas(stats.season_gm) }}</td><td>antilog of the mean of the log10 of all values</td></tr>
+{% if stats.dry_gm is not none %}<tr><td>Dry weather geometric mean</td><td class="n">{{ commas(stats.dry_gm) }}</td><td>the {{ word(stats.dry_count) }} week{{ 's' if stats.dry_count != 1 }} with under 0.25 in of antecedent rain</td></tr>
+{% endif %}{% if stats.wet_gm is not none %}<tr><td>Wet weather geometric mean</td><td class="n">{{ commas(stats.wet_gm) }}</td><td>the {{ word(stats.wet_count) }} week{{ 's' if stats.wet_count != 1 }} with 0.5 in or more</td></tr>
 {% endif %}{% if stats.wet_dry_ratio %}<tr><td>Wet to dry ratio</td><td class="n">{{ '%.1f' % stats.wet_dry_ratio }} times</td><td>wet geometric mean divided by dry</td></tr>
 {% endif %}<tr><td>Median</td><td class="n">{{ stats.median }}</td><td>{{ stats.median_rule }}</td></tr>
-<tr><td>Range</td><td class="n">{{ commas(stats.lo.ecoli) }} to {{ commas(stats.hi.ecoli) }}</td><td>{% if stats.n > 1 %}{{ stats.lo.date_noyear }}, and {{ stats.hi.date_noyear }}{% else %}one sample so far{% endif %}</td></tr>
+<tr><td>Range</td><td class="n">{{ commas(stats.lo.ecoli) }} to {{ commas(stats.hi.ecoli) }}</td><td>{% if stats.n > 1 %}lowest {{ stats.lo.date_noyear }}, highest {{ stats.hi.date_noyear }}{% else %}one sample so far{% endif %}</td></tr>
 <tr><td>Advisory colors</td><td class="n">{{ stats.colors_line }}</td><td>one call per sample against the bands</td></tr>
 </tbody></table></div>
 {% if stats.has_rain_story %}
-<p>Rain over half an inch preceded {{ word(stats.wet_over_count) }} of the {{ word(stats.over_count) }} exceedance{{ 's' if stats.over_count != 1 }}. The <a class='tx' href='/methods/#limits'>rain and risk section</a> reports what that pattern gets wrong as well as what it gets right.</p>
+<p>Rain of half an inch or more preceded {{ word(stats.wet_over_count) }} of the {{ word(stats.over_count) }} exceedance{{ 's' if stats.over_count != 1 }}. The <a class='tx' href='/methods/#limits'>limits section</a> of the methods page explains how the 48 hour rain figure can miss a storm that ends just before its window.</p>
 {% endif %}
-{% if stats.n > 1 %}<p class="note">Ranges on the record plates are over the weeks of the season so far.</p>
+{% if stats.n > 1 %}<p class="note">The small panel beside each record shows where that week falls between the lowest and highest values of the season so far.</p>
 {% endif %}{% for w in weeks %}<article class="record" id="{{ w.id }}">
   <div class="record-head">
     <h3>{{ w.date_long }}</h3>
@@ -62,7 +62,7 @@
 </div>
 <div class="panel">
   <h4>Take the data</h4>
-  <p class="note">Every record, plus the field parameters, is published as CSV and JSON with a data dictionary. <a class='tx' href='/data/'>The data page</a>.</p>
+  <p class="note">Every record, plus the field parameters, is published as CSV and JSON, with a guide to every field. <a class='tx' href='/data/'>The data page</a>.</p>
 </div>
 {{ partials.bands_panel() }}
 </div>

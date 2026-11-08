@@ -22,8 +22,7 @@
     },
     {
       "id": "w06",
-      "say": "Turbidity reached 92 cm, clearer than week 5’s 82 cm. The 48 hour antecedent rain is 0.00 in, which makes this a dry week by the site’s own rule, but the gauge logged 1.25 in on 27 September, 1.11 in on 28 September and 0.15 in on 29 September, 2.51 in in all, in the days before the window opened. A week like this is why the 48 hour figure needs the full rain log beside it. Plate counts (32 and 29) are the sampler’s own direct count off the physical plates. This was a laboratory split sample, taken on a Friday morning; the laboratory result is pending and will be added when it arrives.",
-      "split_pending": true
+      "say": "Turbidity reached 92 cm, clearer than week 5’s 82 cm. The 48 hour antecedent rain is 0.00 in, which makes this a dry week by the site’s own rule, but the gauge logged 1.25 in on 27 September, 1.11 in on 28 September and 0.15 in on 29 September, 2.51 in in all, in the days before the window opened. A week like this is why the 48 hour figure needs the full rain log beside it. Plate counts (32 and 29) are the sampler’s own direct count off the physical plates. This was a laboratory split sample, taken on a Friday morning."
     },
     {
       "id": "w07",
@@ -37,6 +36,10 @@
     {
       "id": "w09",
       "say": "This sample was taken at 7:15 on a Monday morning, not the usual Sunday evening, so it is not a like-for-like comparison with earlier weeks on time of day. Water temperature fell to 12.2 C (54 F), the coldest of the season. Turbidity read 66 cm, down from 95 cm last week and the murkiest reading since week 4, even though the sampler reports no rain at all during the week; the 48 hour antecedent rain is recorded as 0.00 in on that report. Plate counts (30 and 25) are the sampler’s own direct count off the physical plates. No laboratory split was sent this week."
+    },
+    {
+      "id": "w10",
+      "say": "At 1,450 CFU/100 mL this is the highest reading since week 4, and the highest of any week recorded at 0.00 in of antecedent rain, on the sampler’s report that no rain fell during the week. Turbidity read 58 cm, down from 66 cm last week and the murkiest reading since week 4. Water temperature was 13.2 C (55.8 F), up from 12.2 C last week. The tide was lowish and ebbing. Plate counts (60 and 85) are the sampler’s own."
     }
   ],
   "advisories": []

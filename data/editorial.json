@@ -10,7 +10,7 @@
     },
     {
       "id": "w03",
-      "say": "First reading from the project’s own rain gauge at the boathouse: 0.00 in in the 48 hours before the sample, so this week’s number is no longer attributed to an airport three miles away. Plated volume was confirmed at a true 5 mL, so the standard multiplier of 20 applies with no correction needed. The plate counts shown are the sampler’s own direct count off the physical plates (16 and 11), which replaced an earlier photograph-based estimate (approximately 28 and 22) that ran high, likely from misjudging colony color under backlight rather than plain white light."
+      "say": "First reading from the project’s own rain gauge near the boathouse: 0.00 in in the 48 hours before the sample, so this week’s number is no longer attributed to an airport three miles away. Plated volume was confirmed at a true 5 mL, so the standard multiplier of 20 applies with no correction needed. The plate counts shown are the sampler’s own direct count off the physical plates (16 and 11), which replaced an earlier photograph-based estimate (approximately 28 and 22) that ran high, likely from misjudging colony color under backlight rather than plain white light."
     },
     {
       "id": "w04",
@@ -40,6 +40,10 @@
     {
       "id": "w10",
       "say": "At 1,450 CFU/100 mL this is the highest reading since week 4, and the highest of any week recorded at 0.00 in of antecedent rain, on the sampler’s report that no rain fell during the week. Turbidity read 58 cm, down from 66 cm last week and the murkiest reading since week 4. Water temperature was 13.2 C (55.8 F), up from 12.2 C last week. The tide was lowish and ebbing. Plate counts (60 and 85) are the sampler’s own."
+    },
+    {
+      "id": "w11",
+      "say": "At 250 CFU/100 mL this is the lowest reading of the season, and still just over the 235 line: two fewer colonies across the two plates would have put it in the yellow band. It came after 0.54 in of rain in the 48 hours before the sample, enough to count as a wet week: 0.46 in read on 7 November, confirmed by the sampler to have fallen after 7:20 that morning, and 0.08 in read on 8 November. This sample was taken at 7:20 on a Monday morning, not the usual Sunday evening, with the tide high and still coming in. Turbidity read 88 cm, much clearer than 58 cm last week. Water temperature was 14.2 C (57.6 F), up from 13.2 C. The two plates (16 and 9 colonies) are 56% apart, the first pair this season outside the 50% precision limit; at counts this low, a few colonies make a large difference. Plate counts are the sampler’s own."
     }
   ],
   "advisories": []

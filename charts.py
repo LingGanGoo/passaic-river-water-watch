@@ -268,7 +268,7 @@ def season_chart(weeks, criteria):
         out.append(text(f1(cx), f1(rain_base + 16), day, anchor="middle"))
         out.append(text(f1(cx), f1(rain_base + 27), mon, size=9, anchor="middle"))
     out.append(text(f1(x0), "444.0", "Rain is the total in the 48 hours before the sample, "
-                    "read from the gauge at the boathouse."))
+                    "read from the project gauge near the boathouse."))
     out.append("</svg>")
     return "".join(out)
 

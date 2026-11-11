@@ -1,242 +1,253 @@
 {
  "dataset": "Rutherford Reach rain gauge log",
- "note": "Daily readings from the project rain gauge at the boathouse. Each reading is the accumulation since the gauge was last emptied, read and reset about once a day. The time of day has varied, so a reading is dated by the day it was read, not by when the rain fell. The gauge went into service 2 September 2026; there is no gauge record before that date, and antecedent rainfall for weeks sampled earlier is attributed to the nearest airport weather station instead, as stated on each of those records.",
+ "note": "Daily readings from the project rain gauge near the boathouse. Each reading is the accumulation since the gauge was last emptied, read and reset about once a day. The time of day has varied, so a reading is dated by the day it was read, not by when the rain fell. The gauge went into service 2 September 2026; there is no gauge record before that date, and antecedent rainfall for weeks sampled earlier is attributed to the nearest airport weather station instead, as stated on each of those records.",
  "unit": "inches",
  "readings": [
   {
    "date": "2026-09-02",
    "reading_in": 0.405,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-03",
    "reading_in": 0.235,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-04",
    "reading_in": 0.065,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-05",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-06",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-07",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-08",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-09",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-10",
    "reading_in": 0.1,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-11",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-12",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-13",
    "reading_in": 1.2,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-14",
    "reading_in": 0.54,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-15",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-16",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-17",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-18",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-19",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-20",
    "reading_in": 0.1,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-21",
    "reading_in": 0.18,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-22",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-23",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-24",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-25",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-26",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-27",
    "reading_in": 1.25,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-28",
    "reading_in": 1.11,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-29",
    "reading_in": 0.15,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-09-30",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-01",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-02",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-03",
    "reading_in": 0.05,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-04",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-05",
    "reading_in": 0.05,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-06",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-07",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-08",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-09",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-10",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-11",
    "reading_in": 0.58,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-12",
    "reading_in": 2.5,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-13",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-14",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-15",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-16",
    "reading_in": 0.05,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-17",
    "reading_in": 0.34,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
   },
   {
    "date": "2026-10-18",
    "reading_in": 0.0,
-   "source": "project rain gauge at the boathouse"
+   "source": "project rain gauge near the boathouse"
+  },
+  {
+   "date": "2026-11-07",
+   "reading_in": 0.46,
+   "source": "project rain gauge near the boathouse"
+  },
+  {
+   "date": "2026-11-08",
+   "reading_in": 0.08,
+   "source": "project rain gauge near the boathouse"
   }
- ]
+ ],
+ "gauge_correction": "Corrected 10 November 2026: the gauge was described as at the boathouse. It stands near the boathouse, not at it. No reading changed."
 }

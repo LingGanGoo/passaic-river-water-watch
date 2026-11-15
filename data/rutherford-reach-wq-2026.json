@@ -3,7 +3,7 @@
  "version": "1.0",
  "extract_of": "Passaic River Water Watch field records",
  "extract_note": "Live field season records. Every record Passaic River Water Watch has collected this season at station NBC-01.",
- "released": "2026-11-10",
+ "released": "2026-11-15",
  "publisher": "Passaic River Water Watch",
  "author": "Haolin Li",
  "license": "CC BY 4.0",
@@ -2139,8 +2139,8 @@
    "analytical_method_id": "Coliscan Easygel",
    "analytical_method_name": "Coliscan Easygel, 5 mL, duplicate plates, 24 h at 35 C",
    "sample_fraction": "Total",
-   "result_comment": "mean of duplicate plates, 16 and 9 colonies, counted by the sampler; standard 5 mL protocol, multiplier of 20; purple to dark blue colonies only; sampled on a Monday morning at 7:20 rather than the usual Sunday evening; 48h antecedent rain 0.54 in from gauge readings of 0.46 in on 7 November, confirmed by the sampler to have fallen after 7:20, and 0.08 in on 8 November; duplicate plates 56% apart by range percent difference, outside the 50% QAPP precision limit.",
-   "antecedent_rain_48h_in": "0.54",
+   "result_comment": "mean of duplicate plates, 16 and 9 colonies, counted by the sampler; standard 5 mL protocol, multiplier of 20; purple to dark blue colonies only; sampled on a Monday morning at 7:20 rather than the usual Sunday evening; 48h antecedent rain 0.08 in, read on 8 November; corrected 15 November 2026 from 0.54 in: the 0.46 in read at 9:50 on 7 November covers the time since the previous reading at 3:35 pm, so only 7:20 to 9:50 on 7 November falls inside the 48 h window, and Teterboro Airport recorded no rain in that span, so none of it is counted (an earlier note that it fell after 7:20 was wrong); duplicate plates 56% apart by range percent difference, outside the 50% QAPP precision limit.",
+   "antecedent_rain_48h_in": "0.08",
    "antecedent_rain_source": "project rain gauge near the boathouse",
    "source_url": "readings.html#w11",
    "retrieved_on": "2026-11-10"
@@ -2172,7 +2172,7 @@
    "analytical_method_name": "field thermometer",
    "sample_fraction": "",
    "result_comment": "recorded as 57.6 F",
-   "antecedent_rain_48h_in": "0.54",
+   "antecedent_rain_48h_in": "0.08",
    "antecedent_rain_source": "project rain gauge near the boathouse",
    "source_url": "readings.html#w11",
    "retrieved_on": "2026-11-10"
@@ -2204,7 +2204,7 @@
    "analytical_method_name": "field pH meter",
    "sample_fraction": "",
    "result_comment": "",
-   "antecedent_rain_48h_in": "0.54",
+   "antecedent_rain_48h_in": "0.08",
    "antecedent_rain_source": "project rain gauge near the boathouse",
    "source_url": "readings.html#w11",
    "retrieved_on": "2026-11-10"
@@ -2236,7 +2236,7 @@
    "analytical_method_name": "transparency tube, depth of visibility in cm",
    "sample_fraction": "",
    "result_comment": "higher is clearer",
-   "antecedent_rain_48h_in": "0.54",
+   "antecedent_rain_48h_in": "0.08",
    "antecedent_rain_source": "project rain gauge near the boathouse",
    "source_url": "readings.html#w11",
    "retrieved_on": "2026-11-10"
@@ -2268,7 +2268,7 @@
    "analytical_method_name": "field nitrate test",
    "sample_fraction": "",
    "result_comment": "reported as 1.5 ppm",
-   "antecedent_rain_48h_in": "0.54",
+   "antecedent_rain_48h_in": "0.08",
    "antecedent_rain_source": "project rain gauge near the boathouse",
    "source_url": "readings.html#w11",
    "retrieved_on": "2026-11-10"
@@ -2300,7 +2300,7 @@
    "analytical_method_name": "field phosphate test",
    "sample_fraction": "",
    "result_comment": "reported as 0.05 ppm",
-   "antecedent_rain_48h_in": "0.54",
+   "antecedent_rain_48h_in": "0.08",
    "antecedent_rain_source": "project rain gauge near the boathouse",
    "source_url": "readings.html#w11",
    "retrieved_on": "2026-11-10"

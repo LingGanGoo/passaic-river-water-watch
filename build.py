@@ -295,6 +295,7 @@ def main():
                               for i, w in enumerate(weeks)},
         },
         weekday=lambda d: d.strftime("%A"),
+        build_id=f"{datetime.now():%Y%m%d%H%M}",
     )
 
     pages = {
@@ -304,6 +305,7 @@ def main():
         "methods": "methods",
         "data": "data",
         "about": "about",
+        "map": "map",
     }
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -321,6 +323,52 @@ def main():
         for f in (ROOT / "data").glob(pattern):
             shutil.copy(f, pub / f.name)
     print(f"copied static assets + dataset -> dist/  [{datetime.now():%H:%M:%S}]")
+    write_map_data(dataset)
+
+
+def tide_phase(stage):
+    """Tide direction from the recorded tide text. 'ebb' is checked first because
+    a note like 'low, ebbing; water level elevated by flooding' uses flooding for
+    the river, not the tide."""
+    s = (stage or "").lower()
+    if "ebb" in s or "falling" in s:
+        return "ebb"
+    if "flood" in s or "rising" in s:
+        return "flood"
+    if s.strip() in ("high", "low", "slack", "high slack", "low slack"):
+        return "slack"
+    return None
+
+
+def write_map_data(dataset):
+    """The source map reads the published dataset, never a hand-kept copy."""
+    events = []
+    for r in dataset["records"]:
+        if r["characteristic_name"] != "Escherichia coli" or r["activity_type"] != "field sample":
+            continue
+        rain = opt_float(r["antecedent_rain_48h_in"])
+        events.append({
+            "id": "W" + r["activity_id"].rsplit("-W", 1)[1],
+            "date": r["activity_start_date"],
+            "time": r["activity_start_time"],
+            "ecoli": float(r["result_value"]),
+            "rain48_in": rain,
+            "rain_source": r["antecedent_rain_source"],
+            "tide_stage": r["tide_stage"],
+            "tide_phase": tide_phase(r["tide_stage"]),
+        })
+    events.sort(key=lambda e: (e["date"], e["time"]))
+    gauge = json.loads((ROOT / "data" / "rain-log.json").read_text())
+    out = {
+        "station": {"id": dataset["station"]["id"], "lat": dataset["station"]["latitude"],
+                    "lon": dataset["station"]["longitude"]},
+        "criteria": dataset["criteria"],
+        "events": events,
+        "rain_gauge_daily_in": {d["date"]: d["reading_in"] for d in gauge["readings"]},
+    }
+    dest = DIST / "map" / "data.json"
+    dest.write_text(json.dumps(out, indent=1))
+    print(f"built {dest.relative_to(ROOT)}  ({len(events)} samples)")
 
 
 def a_index(a):

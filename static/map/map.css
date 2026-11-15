@@ -1,0 +1,71 @@
+/* Source map page. Uses the site tokens from waterwatch.css; square corners, mono labels. */
+:root {
+  --cso: #B23A17;      /* the site accent, rust */
+  --ms4: #1F6F66;      /* teal, kept clear of the advisory green */
+  --seq0: #E1E8EE; --seq1: #A9BFD3; --seq2: #6E92B5; --seq3: #3E6690; --seq4: #1C3A5C;
+}
+
+.mapstats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 var(--gut); margin-top: 22px; }
+.mapstats div { border-top: var(--rule); padding-top: 8px; }
+.mapstats dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.mapstats dd { margin: 2px 0 0; font-family: var(--mono); font-weight: 600; font-size: 26px; letter-spacing: -0.02em; }
+.mapstats dd small { display: block; font-family: var(--body); font-weight: 400; font-size: 12.5px; letter-spacing: 0; color: var(--muted); }
+
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; margin-top: 16px; font-size: 13.5px; }
+.controls .kicker { margin: 0; }
+.controls label { display: inline-flex; gap: 6px; align-items: center; }
+.controls label[aria-disabled="true"] { color: var(--muted); }
+
+/* heatmap */
+.hm { display: grid; grid-template-columns: 150px repeat(4, minmax(110px, 1fr)); gap: 2px; margin-top: 12px; }
+.hm .ch, .hm .rh { font-size: 12.5px; color: var(--muted); padding: 6px 8px 6px 0; }
+.hm .ch { text-align: center; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+.hm .ch b, .hm .rh b { color: var(--ink); font-weight: 600; }
+.hm .rh { display: flex; flex-direction: column; justify-content: center; }
+.hm .cell { min-height: 78px; padding: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.hm .cell.empty { background: var(--surface); color: var(--muted); font-size: 12px; }
+.hm .cell .v { font-family: var(--mono); font-size: 21px; font-weight: 600; line-height: 1.1; }
+.hm .cell .n { font-family: var(--mono); font-size: 10.5px; margin-top: 3px; }
+.ramp { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.ramp .bar { height: 10px; width: 220px; background: linear-gradient(90deg, var(--seq0), var(--seq1), var(--seq2), var(--seq3), var(--seq4)); }
+#hmNote { margin-top: 12px; }
+
+/* tables */
+table.tbl td.wrap { min-width: 240px; font-size: 12.5px; color: var(--muted); }
+table.tbl td.warn { color: var(--accent); }
+table.tbl td.tid { font-family: var(--mono); font-size: 12.5px; white-space: nowrap; }
+
+/* timeline */
+#timelineFig svg text { font-family: var(--mono); font-size: 11px; fill: var(--muted); }
+#timelineFig svg text.lab { fill: var(--ink); font-weight: 600; }
+
+/* map */
+.status { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 14px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.status span.err { color: var(--accent); }
+#map { height: 540px; margin-top: 10px; border: var(--rule); background: var(--surface); }
+.maplegend { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.maplegend span { display: inline-flex; align-items: center; gap: 7px; }
+.k { display: inline-block; width: 11px; height: 11px; }
+.k.dock { background: var(--ink); border-radius: 50%; box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink); }
+.k.cso { background: var(--cso); border-radius: 50%; }
+.k.ms4 { background: var(--ms4); width: 8px; height: 8px; border-radius: 50%; }
+.k.stn { background: var(--seq3); border: 1px solid var(--ink); }
+.k.stn.none { background: var(--paper); }
+.stn-mark { border: 1.5px solid var(--ink); box-sizing: border-box; }
+
+.leaflet-container { font-family: var(--body); }
+.leaflet-bar, .leaflet-bar a, .leaflet-control-layers, .leaflet-popup-content-wrapper, .leaflet-popup-tip { border-radius: 0 !important; }
+.leaflet-popup-content { font-size: 12.5px; line-height: 1.5; margin: 10px 14px; }
+.leaflet-popup-content b { font-weight: 600; }
+.leaflet-control-attribution { font-size: 10px; }
+
+#tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--paper); font-size: 12.5px; line-height: 1.45;
+  padding: 8px 10px; max-width: 290px; display: none; z-index: 2000; }
+
+@media (max-width: 900px) { .mapstats { grid-template-columns: 1fr 1fr; gap: 16px var(--gut); } }
+@media (max-width: 620px) {
+  .hm { grid-template-columns: 96px repeat(4, minmax(80px, 1fr)); }
+  .figscroll .hm { min-width: 520px; }
+  .hm .cell .v { font-size: 16px; }
+  #map { height: 420px; }
+}

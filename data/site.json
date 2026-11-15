@@ -32,6 +32,11 @@
       "Methods"
     ],
     [
+      "map",
+      "/map/",
+      "Source map"
+    ],
+    [
       "data",
       "/data/",
       "Data"

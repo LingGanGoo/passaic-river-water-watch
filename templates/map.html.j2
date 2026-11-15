@@ -1,0 +1,82 @@
+{% extends 'base.html.j2' %}
+{% set title = "Source map | " ~ site.name %}
+{% set description = "Where the E. coli at the Nereid dock might come from: each reading lined up against rainfall, tide, and the mapped sewer and stormwater outfalls nearby." %}
+
+{% block head %}<link rel="stylesheet" href="/map/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="/map/map.css?v={{ build_id }}">{% endblock %}
+
+{% block main %}<div class="grid">
+<div class="full">
+<span class="kicker">Station {{ station.id }} &middot; source map</span>
+<h1>Where is the E. coli coming from?</h1>
+<p class="lede">Every reading from the dock, lined up against rainfall, tide, and the sewer and stormwater outfalls mapped nearby. This can rank possible explanations. It cannot prove where the bacteria come from.</p>
+
+<dl class="mapstats" id="tiles" aria-live="polite"></dl>
+
+<h2 id="heatmap">Rain and tide</h2>
+<p>Each cell is the geometric mean of the readings taken under that combination of rainfall in the 48 hours before the sample and tide direction. Darker means more bacteria. Most cells hold one or two readings, so read each cell as a hint.</p>
+<div class="controls" role="group" aria-label="Rainfall source">
+  <span class="kicker">Rainfall from</span>
+  <label><input type="radio" name="rainsrc" value="recorded" checked> The published record</label>
+  <label id="lblModel" aria-disabled="true"><input type="radio" name="rainsrc" value="model" disabled> Open-Meteo model estimate <span id="modelState">(loading)</span></label>
+</div>
+<div class="figscroll"><div class="hm" id="hm" role="table" aria-label="E. coli geometric mean by rainfall and tide direction"></div></div>
+<div class="ramp"><span>126</span><span class="bar" aria-hidden="true"></span><span>3,000 {{ criteria.unit }}, log scale</span></div>
+<p class="note" id="hmNote"></p>
+
+<h3>How a pattern would read</h3>
+<ul class="bul">
+  <li><strong>High on a falling tide after rain</strong> would point upstream: combined sewers in Paterson, tributaries, storm drains above the dock.</li>
+  <li><strong>High on a rising tide</strong> would point downstream, with the tide pushing water from below the dock back up the river.</li>
+  <li><strong>High with no rain for days</strong> would point to a steady source, such as a leaking sewer line or a wrong connection into a storm drain.</li>
+</ul>
+
+<h3>Every reading</h3>
+<div class="scroll"><table class="tbl" id="evTable"></table></div>
+<p class="note">Weeks 9 and 10 have no gauge reading. The sampler reported no rain, and Teterboro Airport, about 3 miles away, recorded none from 18 October to 4 November (its 20 October record is missing). Tide direction is read from the tide note taken at the dock.</p>
+
+<h2 id="timeline">Rain and E. coli through the season</h2>
+<figure class="fig">
+  <div class="figscroll wide" id="timelineFig"></div>
+  <figcaption id="tlNote"></figcaption>
+</figure>
+
+<h2 id="outfalls">Outfalls and monitoring stations</h2>
+<p>Mapped discharge points that could reach the dock, loaded live from New Jersey's and the federal government's own databases each time this page opens.</p>
+<div class="status" id="status"></div>
+<div id="map" aria-label="Map of outfalls and monitoring stations around the dock"></div>
+<div class="maplegend">
+  <span><i class="k dock"></i>{{ station.id }}, the dock</span>
+  <span><i class="k cso"></i>Combined sewer overflow</span>
+  <span><i class="k ms4"></i>Stormwater outfall</span>
+  <span><i class="k stn"></i>Monitoring station, shaded by E. coli geometric mean</span>
+  <span><i class="k stn none"></i>Station with no E. coli results</span>
+</div>
+
+<h3>Closest mapped outfalls</h3>
+<p class="note">Straight-line distance from the published station point, which is rounded to two decimal places, so distances are approximate. Upstream is north of the dock, toward the Dundee Dam. The river is tidal here, so outfalls on either side can reach the dock.</p>
+<div class="scroll"><table class="tbl" id="nearTable"><tbody><tr><td>Waiting for outfall data.</td></tr></tbody></table></div>
+
+<h2 id="limits">What this can and cannot show</h2>
+<ul class="bul">
+  <li>One station and {{ word(weeks|length) }} readings can rank explanations. They cannot prove a source.</li>
+  <li>An outfall being close is not evidence that it is flowing or that it carries bacteria. Finding that out takes a look at the pipe in dry weather and samples above and below it.</li>
+  <li>An E. coli count cannot tell human from animal sources. A DNA marker test can.</li>
+  <li>Monitoring station results come from a certified laboratory method and reach the public weeks after sampling, so they are context, not a same-day comparison. Results flagged for quality-control problems are left out.</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ul class="bul">
+  <li><a class="tx" href="/data/">Passaic River Water Watch dataset, station {{ station.id }}</a>, read directly by this page.</li>
+  <li><a class="tx" href="https://mapsdep.nj.gov/arcgis/rest/services/Features/Utilities/MapServer/0">NJDEP combined sewer overflow outfalls</a></li>
+  <li><a class="tx" href="https://mapsdep.nj.gov/arcgis/rest/services/Applications/MS4_Map/MapServer/5">NJDEP stormwater (MS4) outfall inventory</a></li>
+  <li><a class="tx" href="https://www.waterqualitydata.us/">Water Quality Portal</a>, New Jersey Harbor Dischargers Group and Interstate Environmental Commission stations</li>
+  <li><a class="tx" href="https://open-meteo.com/">Open-Meteo historical weather</a>, a gridded model estimate, not a rain gauge</li>
+  <li>Base map &copy; <a class="tx" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Map library: Leaflet 1.9.4 (BSD-2-Clause).</li>
+</ul>
+</div>
+</div>
+<div id="tip" role="tooltip"></div>{% endblock %}
+
+{% block scripts %}<script src="/map/vendor/leaflet/leaflet.js"></script>
+<script src="/map/app.js?v={{ build_id }}"></script>{% endblock %}

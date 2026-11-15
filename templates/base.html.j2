@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/waterwatch.css">
+{% block head %}{% endblock %}
 </head>
 <body>
 <header class="util">
@@ -54,6 +55,7 @@
     </div>
   </div>
 </footer>
+{% block scripts %}{% endblock %}
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1a6a0a1a1eb444b395e49aaefb376035"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

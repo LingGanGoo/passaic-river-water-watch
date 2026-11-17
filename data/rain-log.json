@@ -247,6 +247,16 @@
    "date": "2026-11-08",
    "reading_in": 0.08,
    "source": "project rain gauge near the boathouse"
+  },
+  {
+   "date": "2026-11-13",
+   "reading_in": 2.5,
+   "source": "project rain gauge near the boathouse"
+  },
+  {
+   "date": "2026-11-14",
+   "reading_in": 0.14,
+   "source": "project rain gauge near the boathouse"
   }
  ],
  "gauge_correction": "Corrected 10 November 2026: the gauge was described as at the boathouse. It stands near the boathouse, not at it. No reading changed."

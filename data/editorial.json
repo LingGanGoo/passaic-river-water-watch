@@ -48,6 +48,10 @@
     {
       "id": "w12",
       "say": "The 48 hour antecedent rain is 0.14 in, read at 16:10 on 14 November, which makes this a dry week by the site’s own rule. But the gauge read 2.50 in on 13 November, and the sampler confirms all of it fell before the window opened at 16:15 that day. As in week 6, a large storm ended just before the 48 hour window, so the rain log matters more than the 48 hour figure here. Water temperature fell to 9.2 C (48.6 F), the coldest of the season. Turbidity read 86 cm, close to last week’s 88 cm. The tide was mid and ebbing. Plate counts (40 and 45) are the sampler’s own."
+    },
+    {
+      "id": "w13",
+      "say": "The gauge read 0.00 in, so this is a dry week. At 850 CFU/100 mL it matches weeks 8 and 12 exactly, and the plate counts (45 and 40) are the same pair as week 12’s; the sampler confirms they are this week’s own direct count off the physical plates. Nitrate read 2.2 ppm on the same test strip, the first reading this season that is not 1.5 ppm. Water temperature was 10.0 C (50 F), up slightly from last week’s season low of 9.2 C. Turbidity read 80 cm, down from 86 cm. The tide was near high and still coming in."
     }
   ],
   "advisories": []
